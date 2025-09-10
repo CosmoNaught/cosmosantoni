@@ -811,8 +811,7 @@
     <!-- Intro Animation -->
     <div class="intro-overlay" id="introOverlay">
         <div class="intro-container">
-            <div class="intro-text" id="introText1">He<span class="highlight-coral">//</span>o, World.</div>
-            <div class="intro-text" id="introText2">Engineering <span class="highlight-coral">impact</span></div>
+            <div class="intro-text" id="introText2">Meet <span class="highlight-coral">Cosmo</span></div>
         </div>
     </div>
 
@@ -833,12 +832,12 @@
     <section class="hero" id="hero">
         <div class="hero-content">
             <h1 class="hero-title">
-                Engineering the <span class="highlight-coral">impossible</span><br>
-                at <span class="highlight-coral">scale</span>
+                Engineering the <span class="highlight-coral">impossible</span>
             </h1>
             <p class="hero-subtitle">
-                Building production ML systems at the intersection of<br>
-                mathematical theory and <span class="highlight-coral">real-world impact</span>.
+
+                PhD researcher at Imperial College London <br>
+                Engineering <span class="highlight-coral">mathematical theory</span> into production systems designed for <span class="highlight-coral">real world impact</span>.
             </p>
             <div class="hero-cta-group">
                 <a href="#projects" class="btn btn-primary">
@@ -858,7 +857,7 @@
         <div class="section-header reveal">
             <div class="section-label">Projects</div>
             <h2 class="section-title">Production Systems</h2>
-            <p class="section-subtitle">From mathematical theory to deployed solutions at global scale.</p>
+            <p class="section-subtitle">From <span class="highlight-coral">mathematical theory</span> to deployed solutions at global scale.</p>
         </div>
         
         <div class="projects-grid">
@@ -873,7 +872,7 @@
                     <div class="project-badge">NEURAL ACCELERATION</div>
                     <h3 class="project-title">MINTverse</h3>
                     <p class="project-description">
-                        Neural emulation platform achieving 125,000× speedup. From 24 minutes to 12 milliseconds. Deployed for global decision support.
+                        Neural temporal-emulation platform achieving 125,000× speedup. From 24 minutes to 12 milliseconds. Deployed for global decision support.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -962,7 +961,7 @@
                 <h2 class="section-title">
                     Let’s build the <span class="highlight-coral">impossible</span>.
                 </h2>
-                <p class="section-subtitle">Same details as MINTverse, wrapped for this site.</p>
+                <p class="section-subtitle">Let's <span class="highlight-coral">connect</span>.</p>
             </div>
             <div class="contact-card">
                 <div class="contact-title">
@@ -997,52 +996,43 @@
     </section>
 
     <script>
-        // Intro animation sequence
-        const intro1 = document.getElementById('introText1');
-        const intro2 = document.getElementById('introText2');
         const overlay = document.getElementById('introOverlay');
-        const navbar = document.getElementById('navbar');
-        const hero = document.getElementById('hero');
-
-        // Start with both texts hidden
-        intro1.style.display = 'none';
-        intro2.style.display = 'none';
-
-        // Start the intro sequence
+        const navbar  = document.getElementById('navbar');
+        const hero    = document.getElementById('hero');
+        const intro1  = document.getElementById('introText1'); // may be null
+        const intro2  = document.getElementById('introText2');
+      
+        function fadeIn(el){ if(!el) return; el.style.display='block'; el.classList.add('fade-in'); }
+        function fadeOut(el){ if(!el) return; el.classList.remove('fade-in'); el.classList.add('fade-out'); }
+        function finish(){
+          overlay.classList.add('fade-out');
+          navbar.classList.add('visible');
+          hero.classList.add('visible');
+          setTimeout(()=>overlay.classList.add('hidden'), 1200);
+        }
+      
+        // Start hidden if present
+        if (intro1) intro1.style.display = 'none';
+        if (intro2) intro2.style.display = 'none';
+      
         setTimeout(() => {
-            // Show and fade in first text
-            intro1.style.display = 'block';
-            intro1.classList.add('fade-in');
-            
-            setTimeout(() => {
-                // Fade out first text
-                intro1.classList.remove('fade-in');
-                intro1.classList.add('fade-out');
-                
-                setTimeout(() => {
-                    // Hide first text and show second text
-                    intro1.style.display = 'none';
-                    intro2.style.display = 'block';
-                    intro2.classList.add('fade-in');
-                    
-                    setTimeout(() => {
-                        // Fade out second text
-                        intro2.classList.remove('fade-in');
-                        intro2.classList.add('fade-out');
-                        
-                        setTimeout(() => {
-                            // Fade out overlay and show main content
-                            overlay.classList.add('fade-out');
-                            navbar.classList.add('visible');
-                            hero.classList.add('visible');
-                            
-                            setTimeout(() => {
-                                overlay.classList.add('hidden');
-                            }, 1200);
-                        }, 800);
-                    }, 2000);
-                }, 800);
-            }, 1800);
+          if (!intro1) {
+            // One-slide sequence: just "Meet Cosmo"
+            fadeIn(intro2);
+            setTimeout(()=>{ fadeOut(intro2); setTimeout(finish, 800); }, 2000);
+            return;
+          }
+      
+          // Two-slide sequence
+          fadeIn(intro1);
+          setTimeout(()=> {
+            fadeOut(intro1);
+            setTimeout(()=> {
+              if (intro1) intro1.style.display = 'none';
+              fadeIn(intro2);
+              setTimeout(()=> { fadeOut(intro2); setTimeout(finish, 800); }, 2000);
+            }, 800);
+          }, 1800);
         }, 100);
 
         // Scroll reveal
