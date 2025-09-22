@@ -45,7 +45,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Intro Animation */
+        
         .intro-overlay {
             position: fixed;
             top: 0;
@@ -96,7 +96,7 @@
             animation: introFadeOut 0.8s var(--ease-apple) forwards;
         }
 
-        /* Make highlight identical to MINTverse and animate it */
+        
         .highlight-coral {
             background: linear-gradient(90deg,
                 var(--accent-coral) 0%,
@@ -144,7 +144,7 @@
             }
         }
 
-        /* Navigation */
+        
         nav {
             position: fixed;
             top: 0;
@@ -238,7 +238,7 @@
             transform: scale(1.05);
         }
 
-        /* Hero Section */
+        
         .hero {
             min-height: 100vh;
             display: flex;
@@ -309,7 +309,7 @@
         }
 
         .hero-title .highlight-coral {
-            /* ensure animated gradient shows inside hero too */
+            
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -435,7 +435,7 @@
             }
         }
 
-        /* Projects Section */
+        
         .projects {
             padding: 120px 24px;
             background: transparent;
@@ -559,7 +559,7 @@
             background-clip: text;
             background-size: 200% 100%;
             animation: shimmer 16s ease-in-out infinite;
-            animation-delay: -5.3s;  /* Offset the animation timing */
+            animation-delay: -5.3s;  
         }
 
         .project-logo.kairos {
@@ -636,10 +636,10 @@
             margin-top: 4px;
         }
 
-        /* About Section - Condensed */
+        
         .about {
             padding: 100px 24px 24px;
-            /* Match hero/body background */
+            
             background: transparent;
             min-height: 100vh;
             display: flex;
@@ -675,7 +675,7 @@
             font-weight: 600;
         }
 
-        /* Contact Section (matches MINTverse CTA, in your palette) */
+        
         .contact {
             padding: 120px 24px;
             background: transparent;
@@ -741,7 +741,7 @@
             box-shadow: 0 10px 30px rgba(255, 94, 91, 0.18);
         }
 
-        /* Footer - Integrated */
+        
         .footer-integrated {
             margin-top: 32px;
             padding-top: 24px;
@@ -790,7 +790,7 @@
             line-height: 1.6;
         }
 
-        /* Scroll reveal animations */
+        
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -802,7 +802,7 @@
             transform: translateY(0);
         }
 
-        /* Mobile adjustments */
+        
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -821,7 +821,7 @@
             }
         }
 
-        /* Smooth scrollbar */
+        
         ::-webkit-scrollbar {
             width: 12px;
         }
@@ -840,7 +840,7 @@
             background: #a0a0a4;
         }
 
-            /* Featured Project Styles */
+            
     .featured-project-wrapper {
         max-width: 1200px;
         margin: 0 auto 60px;
@@ -886,7 +886,7 @@
         margin-bottom: 8px;
     }
 
-    /* Production badges */
+    
     .badge-group {
         display: flex;
         gap: 12px;
@@ -906,7 +906,7 @@
         border: 1px solid rgba(139, 92, 246, 0.2);
     }
 
-    /* Live indicator */
+    
     .deployment-indicator {
         position: absolute;
         top: 24px;
@@ -939,7 +939,7 @@
         50% { opacity: 0.7; transform: scale(1.2); }
     }
 
-    /* Research section */
+    
     .research-section {
         max-width: 1200px;
         margin: 0 auto;
@@ -971,7 +971,7 @@
         gap: 40px;
     }
 
-    /* Enhanced stats for featured project */
+    
     .project-card.featured .project-stats {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -980,7 +980,7 @@
         padding-top: 32px;
     }
 
-    /* Responsive */
+    
     @media (max-width: 968px) {
         .project-card.featured {
             grid-template-columns: 1fr;
@@ -1021,21 +1021,21 @@
         }
     }
 
-    /* Remove old projects-grid styles since we're not using it anymore */
+    
     .projects-grid {
         display: none;
     }
     </style>
 </head>
 <body>
-    <!-- Intro Animation -->
+    
     <div class="intro-overlay" id="introOverlay">
         <div class="intro-container">
             <div class="intro-text" id="introText2">Meet <span class="highlight-coral">Cosmo</span></div>
         </div>
     </div>
 
-    <!-- Navigation -->
+    
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-brand">Cosmo Santoni</a>
@@ -1048,7 +1048,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    
     <section class="hero" id="hero">
         <div class="hero-content">
             <h1 class="hero-title">
@@ -1057,7 +1057,7 @@
             <p class="hero-subtitle">
 
                 PhD researcher at Imperial College London <br>
-                Engineering <span class="highlight-coral">mathematical theory</span> into production systems designed for <span class="highlight-coral">real world impact</span>.
+                Engineering <span class="highlight-coral">mathematical theory</span> into systems designed for <span class="highlight-coral">real world impact</span>.
             </p>
             <div class="hero-cta-group">
                 <a href="#projects" class="btn btn-primary">
@@ -1072,7 +1072,7 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    
     <section class="projects" id="projects">
         <div class="section-header reveal">
             <div class="section-label">Projects</div>
@@ -1080,7 +1080,7 @@
             <p class="section-subtitle">From <span class="highlight-coral">mathematical theory</span> to deployed solutions at scale.</p>
         </div>
         
-        <!-- Featured Project - MINTverse -->
+        
         <div class="featured-project-wrapper reveal">
             <a href="https://cosmonaught.github.io/MINTverse/"
                 class="project-card featured"
@@ -1118,7 +1118,7 @@
             </a>
         </div>
         
-        <!-- Research Projects Grid -->
+        
         <div class="research-section reveal">
             <div class="research-header">
                 <h3 class="research-title">Research & Development</h3>
@@ -1187,7 +1187,7 @@
         </div>
     </section>
 
-    <!-- About Section - Condensed with integrated footer -->
+    
     <section class="about reveal" id="about">
         <div class="about-wrapper">
             <div class="section-header">
@@ -1218,7 +1218,7 @@
         </div>
     </section>
     
-    <!-- Contact (new, dedicated section matching MINTverse) -->
+    
     <section class="contact reveal" id="contact">
         <div class="contact-wrapper">
             <div class="section-header" style="margin-bottom:32px">
@@ -1244,7 +1244,7 @@
                 </div>
             </div>
         </div>
-        <!-- Integrated Footer -->
+        
         <div class="footer-integrated" id="footer">
             <div class="social-links">
                 <a href="mailto:santonicosmo@gmail.com" class="social-link">Email</a>
@@ -1262,7 +1262,7 @@
         const overlay = document.getElementById('introOverlay');
         const navbar  = document.getElementById('navbar');
         const hero    = document.getElementById('hero');
-        const intro1  = document.getElementById('introText1'); // may be null
+        const intro1  = document.getElementById('introText1'); 
         const intro2  = document.getElementById('introText2');
       
         function fadeIn(el){ if(!el) return; el.style.display='block'; el.classList.add('fade-in'); }
@@ -1274,19 +1274,19 @@
           setTimeout(()=>overlay.classList.add('hidden'), 1200);
         }
       
-        // Start hidden if present
+        
         if (intro1) intro1.style.display = 'none';
         if (intro2) intro2.style.display = 'none';
       
         setTimeout(() => {
           if (!intro1) {
-            // One-slide sequence: just "Meet Cosmo"
+            
             fadeIn(intro2);
             setTimeout(()=>{ fadeOut(intro2); setTimeout(finish, 800); }, 2000);
             return;
           }
       
-          // Two-slide sequence
+          
           fadeIn(intro1);
           setTimeout(()=> {
             fadeOut(intro1);
@@ -1298,7 +1298,7 @@
           }, 1800);
         }, 100);
 
-        // Scroll reveal
+        
         const reveals = document.querySelectorAll('.reveal');
         
         function checkReveal() {
@@ -1316,7 +1316,7 @@
         window.addEventListener('scroll', checkReveal);
         setTimeout(checkReveal, 100);
 
-        // Smooth scroll for navigation links
+        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1330,7 +1330,6 @@
             });
         });
 
-        // Parallax effect on hero
         let ticking = false;
         function updateParallax() {
             const scrolled = window.pageYOffset;
@@ -1350,7 +1349,6 @@
             }
         });
 
-        // Dynamic metric animation on hover
         document.querySelectorAll('.metric').forEach(metric => {
             metric.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px) scale(1.05)';
