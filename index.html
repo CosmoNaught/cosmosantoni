@@ -534,17 +534,51 @@
         }
 
         .project-logo.mintverse {
-            background: linear-gradient(90deg, #fff 0%, #00d4aa 50%, #00ffcc 100%);
+            background: linear-gradient(90deg, 
+                #fff 0%, 
+                #00d4aa 25%, 
+                #00ffcc 50%, 
+                #0071e3 75%, 
+                #fff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 100%;
+            animation: shimmer 16s ease-in-out infinite;
         }
 
         .project-logo.alethia {
-            background: linear-gradient(90deg, #fff 0%, #8b5cf6 50%, #06b6d4 100%);
+            background: linear-gradient(90deg,
+                #fff 0%,
+                #a78bfa 25%,
+                #06b6d4 50%,
+                #f59e0b 75%,
+                #fff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 100%;
+            animation: shimmer 16s ease-in-out infinite;
+            animation-delay: -5.3s;  /* Offset the animation timing */
+        }
+
+        .project-logo.kairos {
+            background: linear-gradient(90deg, 
+                #fff 0%, 
+                #a78bfa 25%, 
+                #ef4444 50%, 
+                #ea580c 75%, 
+                #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 100%;
+            animation: shimmer 16s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 50%; }
+            100% { background-position: -200% 50%; }
         }
 
         .project-content {
@@ -805,6 +839,192 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #a0a0a4;
         }
+
+            /* Featured Project Styles */
+    .featured-project-wrapper {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 24px;
+    }
+
+    .project-card.featured {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        min-height: 440px;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(255, 94, 91, 0.02) 100%);
+        border: 2px solid rgba(255, 94, 91, 0.08);
+    }
+
+    .project-card.featured .project-visual {
+        height: 100%;
+        min-height: 440px;
+        position: relative;
+    }
+
+    .project-card.featured .project-content {
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .project-card.featured .project-title {
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+
+    .project-card.featured .project-description {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+    }
+
+    .project-card.featured .project-description strong {
+        color: var(--text-primary);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    /* Production badges */
+    .badge-group {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .project-badge.production {
+        background: linear-gradient(135deg, rgba(0, 212, 170, 0.12) 0%, rgba(0, 255, 204, 0.12) 100%);
+        color: #00d4aa;
+        border: 1px solid rgba(0, 212, 170, 0.3);
+    }
+
+    .project-badge.scale {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+        color: #8b5cf6;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+
+    /* Live indicator */
+    .deployment-indicator {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 100px;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .live-dot {
+        width: 8px;
+        height: 8px;
+        background: #00ff88;
+        border-radius: 50%;
+        animation: pulse-live 2s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    }
+
+    @keyframes pulse-live {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.2); }
+    }
+
+    /* Research section */
+    .research-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .research-header {
+        text-align: center;
+        margin-bottom: 48px;
+        padding-top: 40px;
+        border-top: 1px solid var(--border-light);
+    }
+
+    .research-title {
+        font-size: 32px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+    }
+
+    .research-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+    }
+
+    .secondary-projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 40px;
+    }
+
+    /* Enhanced stats for featured project */
+    .project-card.featured .project-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        border-top: 1px solid var(--border-light);
+        padding-top: 32px;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+        .project-card.featured {
+            grid-template-columns: 1fr;
+        }
+        
+        .project-card.featured .project-visual {
+            height: 320px;
+            min-height: 320px;
+        }
+        
+        .project-card.featured .project-content {
+            padding: 36px;
+        }
+        
+        .project-card.featured .project-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .secondary-projects-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .project-card.featured .project-content {
+            padding: 28px;
+        }
+        
+        .project-card.featured .project-title {
+            font-size: 32px;
+        }
+        
+        .deployment-indicator {
+            top: 16px;
+            right: 16px;
+            font-size: 11px;
+            padding: 6px 12px;
+        }
+    }
+
+    /* Remove old projects-grid styles since we're not using it anymore */
+    .projects-grid {
+        display: none;
+    }
     </style>
 </head>
 <body>
@@ -857,22 +1077,28 @@
         <div class="section-header reveal">
             <div class="section-label">Projects</div>
             <h2 class="section-title">Production Systems</h2>
-            <p class="section-subtitle">From <span class="highlight-coral">mathematical theory</span> to deployed solutions at global scale.</p>
+            <p class="section-subtitle">From <span class="highlight-coral">mathematical theory</span> to deployed solutions at scale.</p>
         </div>
         
-        <div class="projects-grid">
+        <!-- Featured Project - MINTverse -->
+        <div class="featured-project-wrapper reveal">
             <a href="https://cosmonaught.github.io/MINTverse/"
-                class="project-card reveal"
+                class="project-card featured"
                 target="_blank" rel="noopener noreferrer">
-
                 <div class="project-visual mintverse">
                     <div class="project-logo mintverse">MINTverse</div>
+                    <div class="deployment-indicator">
+                        <span class="live-dot"></span>
+                        <span>Live in Production</span>
+                    </div>
                 </div>
                 <div class="project-content">
-                    <div class="project-badge">NEURAL ACCELERATION</div>
+                    <div class="badge-group">
+                        <div class="project-badge production">PRODUCTION SYSTEM</div>
+                    </div>
                     <h3 class="project-title">MINTverse</h3>
                     <p class="project-description">
-                        Neural temporal-emulation platform achieving 125,000× speedup. From 24 minutes to 12 milliseconds. Deployed for global decision support.
+                        <strong>Deployed worldwide for governments & policy-makers.</strong> Neural temporal-emulation platform achieving 125,000× speedup. Processing millions of scenarios daily for critical decision support. From 24 minutes to 12 milliseconds—without compromising accuracy.
                     </p>
                     <div class="project-stats">
                         <div class="project-stat">
@@ -884,41 +1110,80 @@
                             <span class="stat-label">accuracy</span>
                         </div>
                         <div class="project-stat">
-                            <span class="stat-value">100/sec</span>
-                            <span class="stat-label">throughput</span>
+                            <span class="stat-value">125,000×</span>
+                            <span class="stat-label">speedup</span>
                         </div>
                     </div>
                 </div>
             </a>
-
+        </div>
+        
+        <!-- Research Projects Grid -->
+        <div class="research-section reveal">
+            <div class="research-header">
+                <h3 class="research-title">Research & Development</h3>
+                <p class="research-subtitle">Experimental systems <span class="highlight-coral">pushing boundaries</span> </p>
+            </div>
+            
+            <div class="secondary-projects-grid">
                 <a href="https://cosmonaught.github.io/alethia/"
-                class="project-card reveal"
-                target="_blank" rel="noopener noreferrer">
-                <div class="project-visual alethia">
-                    <div class="project-logo alethia">ALETHIA</div>
-                </div>
-                <div class="project-content">
-                    <div class="project-badge">AI METACOGNITION</div>
-                    <h3 class="project-title">ALETHIA</h3>
-                    <p class="project-description">
-                        Teaching LLMs to self-monitor and improve. Emergent metacognitive control system with quality gates.
-                    </p>
-                    <div class="project-stats">
-                        <div class="project-stat">
-                            <span class="stat-value">92.5%</span>
-                            <span class="stat-label">agency</span>
-                        </div>
-                        <div class="project-stat">
-                            <span class="stat-value">91%</span>
-                            <span class="stat-label">coverage</span>
-                        </div>
-                        <div class="project-stat">
-                            <span class="stat-value">0.18</span>
-                            <span class="stat-label">ECE score</span>
+                    class="project-card"
+                    target="_blank" rel="noopener noreferrer">
+                    <div class="project-visual alethia">
+                        <div class="project-logo alethia">ALETHIA</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-badge">AI METACOGNITION</div>
+                        <h3 class="project-title">ALETHIA</h3>
+                        <p class="project-description">
+                            Teaching LLMs to self-monitor and improve. Emergent metacognitive control system with quality gates.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span class="stat-value">92.5%</span>
+                                <span class="stat-label">agency</span>
+                            </div>
+                            <div class="project-stat">
+                                <span class="stat-value">91%</span>
+                                <span class="stat-label">coverage</span>
+                            </div>
+                            <div class="project-stat">
+                                <span class="stat-value">0.18</span>
+                                <span class="stat-label">ECE score</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+        
+                <a href="https://cosmonaught.github.io/KAIROS/"
+                    class="project-card"
+                    target="_blank" rel="noopener noreferrer">
+                    <div class="project-visual kairos">
+                        <div class="project-logo kairos">KAIROS</div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-badge">SELECTIVE GENERATION</div>
+                        <h3 class="project-title">KAIROS</h3>
+                        <p class="project-description">
+                            Teaching models when to abstain. Weakly-supervised quality assessment achieving 95.2% AUC with calibrated confidence.
+                        </p>
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <span class="stat-value">95.2%</span>
+                                <span class="stat-label">AUC</span>
+                            </div>
+                            <div class="project-stat">
+                                <span class="stat-value">11.9%</span>
+                                <span class="stat-label">error rate</span>
+                            </div>
+                            <div class="project-stat">
+                                <span class="stat-value">p=0.032</span>
+                                <span class="stat-label">significance</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
