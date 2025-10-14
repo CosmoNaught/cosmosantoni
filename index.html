@@ -43,7 +43,7 @@
             "https://www.linkedin.com/in/cosmo-santoni",
             "https://medium.com/@santonicosmo"
           ],
-          "knowsAbout": ["Neural surrogates","Decision intelligence","PyTorch","CUDA","DuckDB","Epidemiological modelling"]
+          "knowsAbout": ["Neural surrogates","Decision intelligence","PyTorch","CUDA","DuckDB","Time-series modelling"]
         }
         </script>
       </head>      
@@ -927,7 +927,7 @@
         /* --- About: 4-card grid layout --- */
         .about-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 20px;
         }
         @media (max-width: 1100px) { .about-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -1003,6 +1003,42 @@
         .about-lede .highlight-coral, .about-outro .highlight-coral { color: var(--accent-coral); font-weight: 600; }
         .about-lede { margin: 6px 0 24px; }
         .about-outro { margin: 24px 0 0; padding-top: 14px; border-top: 1px solid var(--border-light); }
+        .about-outro{
+        text-align: center;
+        margin: 24px auto 0;   /* keeps it centered within the wrapper */
+        }
+
+
+        /* --- About grid: full-bleed, 5-up, wider cards --- */
+        .about-grid{
+        display: grid;
+        /* full-bleed across the viewport while text above stays centered */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        padding-inline: clamp(16px, 4vw, 40px);
+
+        /* five equal columns on desktop */
+        grid-template-columns: repeat(5, minmax(240px, 1fr));
+        gap: clamp(16px, 2vw, 28px);
+        align-items: stretch;               /* make items equal height per row */
+        }
+
+        /* make each card fill its grid cell's height neatly */
+        .about-card{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        }
+
+        /* mobile: stack to one column only */
+        @media (max-width: 768px){
+        .about-grid{
+            width: 100%;
+            margin-left: 0;
+            padding-inline: 0;
+            grid-template-columns: 1fr;
+        }
+        }
 
         
         .contact {
@@ -1118,6 +1154,76 @@
             font-size: 13px;
             line-height: 1.6;
         }
+
+                /* Perfect centering for Contact section */
+        #contact .contact-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;         /* centers all children horizontally */
+        }
+
+        #contact .section-header,
+        #contact .contact-card {
+        width: 100%;
+        max-width: 900px;            /* consistent width with wrapper */
+        margin: 0 auto;              /* center the blocks */
+        text-align: center;          /* center text inside */
+        }
+
+        #contact .contact-cta {
+        display: flex;
+        justify-content: center;     /* center buttons row */
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        }
+
+        #contact .contact-links {
+        display: flex;               /* switch from grid to flex for easy centering */
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 8px auto 0;
+        }
+
+        #contact .contact-link {
+        display: inline-block;       /* prevents full-width stretch */
+        text-align: center;
+        }
+
+        /* Center + normalize button/link styling */
+        #contact .contact-cta,
+        #contact .contact-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 8px auto 0;
+        text-align: center;
+        }
+
+        #contact .contact-cta .btn,
+        #contact .contact-links .contact-link {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        text-align: center;
+        /* allow equalizer to set width cleanly */
+        width: auto;
+        }
+
+        @media (min-width: 769px) {
+        /* keep one-line labels on desktop for clean height */
+        #contact .contact-cta .btn,
+        #contact .contact-links .contact-link {
+            white-space: nowrap;
+        }
+        }
+
+
 
         
         .reveal {
@@ -1608,8 +1714,19 @@
         Systems scale from laptops to cloud, processing billions of data points for governments & policy‑makers.
         </p>
         </article>
-        
-        
+
+        <!-- Card: Cost & Sustainability -->
+        <article class="about-card">
+            <div class="card-eyebrow">Cost & Sustainability</div>
+            <h3>Impact at scale</h3>
+            <p>
+            By replacing hour-scale simulations with millisecond neural surrogates, I’ve cut compute energy by
+            <strong>≈39–47 MWh per 1M scenarios on workstations</strong> and
+            <strong>≈275–307 MWh per 1M in datacentres</strong> (PUE-adjusted),
+            worth <strong>≈£10–12k</strong> and <strong>≈£60–81k</strong> in electricity-only savings, respectively.
+            </p>
+        </article>
+          
         <!-- Card 2: Build & Ship -->
         <article class="about-card">
         <div class="card-eyebrow">Build & Ship</div>
@@ -1640,7 +1757,7 @@
         <p>
         <strong>Stack:</strong> PyTorch for neural architectures, CUDA for GPU optimisation, DuckDB for billion‑row analytics.
         <br>
-        <strong>Domains:</strong> Metacognitive AI, LLM research, epidemiological forecasting.
+        <strong>Domains:</strong> Metacognitive AI, LLM research, time-series forecasting.
         </p>
         </article>
         </div>
@@ -1648,8 +1765,11 @@
         
         <!-- Philosophy paragraph AFTER the cards -->
         <p class="about-outro">
-        <strong>My simple philosophy:</strong> <span class="highlight-coral">make it faster, make it smarter, make it scale.</span>
-        </p>
+            <strong>My simple philosophy:</strong><br>
+            make it <span class="highlight-coral">faster</span>, make it
+            <span class="highlight-coral">smarter</span>, make it
+            <span class="highlight-coral">scale</span>.
+          </p>          
         </div>
         </section>
     
@@ -1839,6 +1959,44 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+        function equalizeWidths(groupSelector, itemSelector) {
+        const group = document.querySelector(groupSelector);
+        if (!group) return;
+        const items = group.querySelectorAll(itemSelector);
+        if (!items.length) return;
+
+        // reset to natural size first
+        items.forEach(el => { el.style.width = 'auto'; });
+
+        // get widest item
+        let max = 0;
+        items.forEach(el => {
+            const w = Math.ceil(el.getBoundingClientRect().width);
+            if (w > max) max = w;
+        });
+
+        // clamp to container width to avoid horizontal scroll on small screens
+        const groupWidth = Math.floor(group.getBoundingClientRect().width);
+        const target = Math.min(max, groupWidth);
+
+        items.forEach(el => { el.style.width = target + 'px'; });
+        }
+
+        function equalizeContact() {
+        equalizeWidths('#contact .contact-cta', '.btn');
+        equalizeWidths('#contact .contact-links', '.contact-link');
+        }
+
+        // run after DOM + fonts, and on resize
+        document.addEventListener('DOMContentLoaded', () => {
+        equalizeContact();
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(equalizeContact);
+        }
+        });
+        window.addEventListener('resize', equalizeContact);
+
     </script>
 </body>
 </html>
