@@ -435,7 +435,109 @@
             }
         }
 
-        
+        .collab-banner {
+            margin-top: 32px;
+            padding: 8px 0 0;
+        }
+
+        .collab-heading {
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .collab-banner {
+        --logo-size: clamp(100px, 14vw, 160px); 
+        --edge-fade: 80px;                     
+        --gap: clamp(20px, 3.5vw, 36px);   
+        --speed: 55s;              
+        }
+
+        .logo-marquee {
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);   /* center the 100vw block in the viewport */
+        /* keep the edge fade on the viewport edges */
+        mask-image: linear-gradient(to right, transparent 0, black var(--edge-fade),
+                                    black calc(100% - var(--edge-fade)), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--edge-fade),
+                                            black calc(100% - var(--edge-fade)), transparent 100%);
+        }
+
+        .logo-track {
+        display: flex;
+        align-items: center;
+        gap: var(--gap);
+        width: max-content;
+        will-change: transform;
+        animation: marqueeRight var(--speed) linear infinite;
+        }
+        .logo-track:hover { animation-play-state: paused; }
+
+        @keyframes marqueeRight {
+        0%   { transform: translateX(-50%); }
+        100% { transform: translateX(0%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+        .logo-track { animation: none; transform: translateX(0); }
+        }
+
+        .logo-item {
+        flex: 0 0 auto;
+        height: var(--logo-size);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 14px;
+        border: 0;
+        background: rgba(255,255,255,0.7);
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none; 
+        color: var(--text-secondary);
+        white-space: nowrap;
+        user-select: none;
+        overflow: hidden;
+        }
+
+        .logo-item img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+        display: block;
+        }
+        .logo-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        }
+
+        .logo-link:focus-visible {
+        outline: 2px solid var(--accent-coral);
+        outline-offset: 2px;
+        border-radius: 10px;
+        }
+
+
+        .logo-placeholder { padding: 0 6px; font-size: clamp(12px, 1.1vw, 14px); }
+
+        .logo-item.tight img { transform: scale(1.25); transform-origin: center; }
+
+        @media (max-width: 480px) {
+        .collab-banner { --logo-size: clamp(84px, 22vw, 120px); --edge-fade: 40px; }
+        }
+
+
+
         .projects {
             padding: 120px 24px;
             background: transparent;
@@ -1069,6 +1171,41 @@
                     <span>↗</span>
                 </a>
             </div>
+
+            <!-- Collaborators banner -->
+            <div class="collab-banner" aria-label="Collaborated with">
+                <div class="collab-heading">Partners & Collaborators</div>
+                <div class="logo-marquee" role="region" aria-roledescription="scrolling logos">
+                    <ul class="logo-track">
+                        <!-- Primary sequence -->
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.imperial.ac.uk" target="_blank" rel="noopener"><img src="logos/icl.jpg" alt="Imperial College London" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://ix.imperial.ac.uk/" target="_blank" rel="noopener"><img src="logos/ix.jpg" alt="Imperial College London I-X" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.cam.ac.uk" target="_blank" rel="noopener"><img src="logos/cam.jpg" alt="Cambridge University" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.dfki.de" target="_blank" rel="noopener"><img src="logos/dfki.png" alt="DFKI" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.who.int" target="_blank" rel="noopener"><img src="logos/who.png" alt="World Health Organization" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.gov.uk/government/groups/scientific-advisory-group-for-emergencies-sage" target="_blank" rel="noopener"><img src="logos/sage.png" alt="SAGE (Scientific Advisory Group for Emergencies)" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.canada.ca/en/public-health.html" target="_blank" rel="noopener"><img src="logos/Public-Health-Agency-of-Canada.png" alt="Public Health Agency of Canada" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.msf.org" target="_blank" rel="noopener"><img src="logos/msf.png" alt="Médecins Sans Frontières (MSF)" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.nhs.uk" target="_blank" rel="noopener"><img src="logos/nhs.jpeg" alt="NHS" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.gov.uk/government/organisations/uk-health-security-agency" target="_blank" rel="noopener"><img src="logos/ukhsa.jpg" alt="UK Health Security Agency (UKHSA)" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight"><a class="logo-link" href="https://www.parkinsons.org.uk" target="_blank" rel="noopener"><img src="logos/puk.png" alt="Parkinson's UK" loading="lazy" decoding="async"></a></li>
+                      
+                        <!-- Duplicate sequence for seamless wraparound (hidden from screen readers) -->
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.imperial.ac.uk" target="_blank" rel="noopener" tabindex="-1"><img src="logos/icl.jpg" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://ix.imperial.ac.uk/" target="_blank" rel="noopener" tabindex="-1"><img src="logos/ix.jpg" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.cam.ac.uk" target="_blank" rel="noopener" tabindex="-1"><img src="logos/cam.jpg" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.dfki.de" target="_blank" rel="noopener" tabindex="-1"><img src="logos/dfki.png" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.who.int" target="_blank" rel="noopener" tabindex="-1"><img src="logos/who.png" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.gov.uk/government/groups/scientific-advisory-group-for-emergencies-sage" target="_blank" rel="noopener" tabindex="-1"><img src="logos/sage.png" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.canada.ca/en/public-health.html" target="_blank" rel="noopener" tabindex="-1"><img src="logos/Public-Health-Agency-of-Canada.png" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.msf.org" target="_blank" rel="noopener" tabindex="-1"><img src="logos/msf.png" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.nhs.uk" target="_blank" rel="noopener" tabindex="-1"><img src="logos/nhs.jpeg" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.gov.uk/government/organisations/uk-health-security-agency" target="_blank" rel="noopener" tabindex="-1"><img src="logos/ukhsa.jpg" alt="" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.parkinsons.org.uk" target="_blank" rel="noopener" tabindex="-1"><img src="logos/puk.png" alt="" loading="lazy" decoding="async"></a></li>
+                      </ul>                                       
+                </div>
+            </div>
+            <!-- /Collaborators banner -->
         </div>
     </section>
 
