@@ -55,16 +55,19 @@
             if ('scrollRestoration' in history) {
               history.scrollRestoration = 'manual';
             }
+            var plain = localStorage.getItem('plain');
             var theme = localStorage.getItem('theme');
+
+            // If no theme is saved, default to dark for regular mode, light for 1997 mode
             if (!theme) {
-              theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+              theme = (plain === 'on') ? 'light' : 'dark';
             }
+
             document.documentElement.setAttribute('data-theme', theme);
             var retro = localStorage.getItem('retro');
             if (retro === 'on') {
               document.documentElement.setAttribute('data-retro', 'on');
             }
-            var plain = localStorage.getItem('plain');
             if (plain === 'on') {
               document.documentElement.setAttribute('data-plain', 'on');
             }
@@ -164,6 +167,14 @@
         @media (prefers-reduced-motion: reduce) {
           .highlight-coral { animation: none; }
         }
+
+        /* --- Google colored text --- */
+        .google-text .g1 { color: #4285F4; } /* Blue */
+        .google-text .o1 { color: #EA4335; } /* Red */
+        .google-text .o2 { color: #FBBC04; } /* Yellow */
+        .google-text .g2 { color: #4285F4; } /* Blue */
+        .google-text .l { color: #34A853; } /* Green */
+        .google-text .e { color: #EA4335; } /* Red */
 
         /* --- Navigation --- */
         nav {
@@ -1935,25 +1946,57 @@
             animation: none !important;
         }
 
-        /* Mobile menu */
+        /* Mobile menu - 90s dropdown style */
         [data-plain="on"] .mobile-menu {
-            background: #ffffcc !important;
+            background: #c0c0c0 !important;
             backdrop-filter: none !important;
+            border: 3px outset #d4d0c8 !important;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.5) !important;
+            padding: 4px !important;
+            position: relative !important;
+            z-index: 1001 !important;
         }
         [data-plain="on"][data-theme="dark"] .mobile-menu {
-            background: #000033 !important;
+            background: #008080 !important;
+            border: 3px outset #00a0a0 !important;
+            box-shadow: 4px 4px 0 rgba(0,255,255,0.3) !important;
         }
         [data-plain="on"] .mobile-link,
         [data-plain="on"] .mobile-cta {
             font-family: 'Comic Sans MS', sans-serif !important;
-            color: #0000ff !important;
-            text-decoration: underline !important;
-            background: none !important;
-            border: none !important;
+            font-size: 14px !important;
+            padding: 6px 12px !important;
+            background: #c0c0c0 !important;
+            border: 2px outset #d4d0c8 !important;
+            color: #000000 !important;
+            margin: 2px !important;
+            text-decoration: none !important;
+            display: block !important;
+        }
+        [data-plain="on"] .mobile-link:hover,
+        [data-plain="on"] .mobile-cta:hover {
+            background: #d4d0c8 !important;
+            border-style: inset !important;
         }
         [data-plain="on"][data-theme="dark"] .mobile-link,
         [data-plain="on"][data-theme="dark"] .mobile-cta {
+            background: #006666 !important;
+            border: 2px outset #008888 !important;
             color: #00ffff !important;
+        }
+        [data-plain="on"][data-theme="dark"] .mobile-link:hover,
+        [data-plain="on"][data-theme="dark"] .mobile-cta:hover {
+            background: #008080 !important;
+            border-style: inset !important;
+        }
+
+        /* Nav toggle button - 90s style */
+        [data-plain="on"] .nav-toggle .bar {
+            background: #000080 !important;
+            height: 3px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .nav-toggle .bar {
+            background: #00ff00 !important;
         }
 
         /* --- 90s CHAOS ENHANCEMENTS --- */
@@ -2078,8 +2121,15 @@
 
         /* 90s-only elements (hidden by default, shown in plain mode) */
         .plain-marquee,
+        .plain-banner,
         .plain-footer-90s {
             display: none;
+            pointer-events: none;
+        }
+        [data-plain="on"] .plain-marquee,
+        [data-plain="on"] .plain-banner,
+        [data-plain="on"] .plain-footer-90s {
+            pointer-events: auto;
         }
         [data-plain="on"] .plain-marquee {
             display: block !important;
@@ -2092,6 +2142,28 @@
             border-bottom: 2px solid #ffff00 !important;
             border-top: 2px solid #ffff00 !important;
             overflow: hidden !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        [data-plain="on"] .plain-banner {
+            display: block !important;
+            width: 100% !important;
+            max-width: 800px !important;
+            margin: 0 auto !important;
+            padding: 8px !important;
+            text-align: center !important;
+            position: relative !important;
+            z-index: 1 !important;
+        }
+        [data-plain="on"] .plain-banner img {
+            width: 100% !important;
+            height: auto !important;
+            border: 3px ridge #808080 !important;
+            box-shadow: 5px 5px 0 #888 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .plain-banner img {
+            border: 3px ridge #006600 !important;
+            box-shadow: 5px 5px 0 #003300 !important;
         }
         [data-plain="on"][data-theme="dark"] .plain-marquee {
             background: #330000 !important;
@@ -2191,6 +2263,10 @@
         <div class="plain-marquee-inner">
             &#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733;
         </div>
+    </div>
+
+    <div class="plain-banner" aria-hidden="true">
+        <img src="assets/web.png" alt="Welcome Banner">
     </div>
 
     <!-- Fluid dynamics background -->
@@ -2487,7 +2563,7 @@
                     <h3 class="project-title">mamba2-jax</h3>
                     <p class="project-description">
                         JAX/Flax implementation of Mamba-2 state-space architecture for causal language modelling and time-series forecasting,
-                        contributed to Google's official jax-ml/bonsai model zoo.
+                        contributed to <span class="google-text"><span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span></span>'s official jax-ml/bonsai model zoo.
                         State-space caching delivers up to 28x inference speedup.
                         Ongoing contributor; co-authoring blog post with the JAX Bonsai team.
                     </p>
@@ -2498,7 +2574,7 @@
                         </div>
                         <div class="project-stat">
                             <span class="stat-value">2 PRs</span>
-                            <span class="stat-label">merged to Google</span>
+                            <span class="stat-label">merged to <span class="google-text"><span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span></span></span>
                         </div>
                     </div>
                 </div>
@@ -2537,7 +2613,7 @@
                     <h3>State-Space Models</h3>
                     <p>
                         Efficient state-space architectures (Mamba-2) in JAX for <span class="highlight-coral">causal language modelling</span> and time-series forecasting.
-                        Contributions merged into <strong>Google's jax-ml/bonsai</strong> model zoo
+                        Contributions merged into <strong><span class="google-text"><span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span></span>'s jax-ml/bonsai</strong> model zoo
                         with up to 28x inference speedup through state-space caching.
                     </p>
                 </article>
@@ -2615,7 +2691,7 @@
                 <div class="contact-links">
                     <a class="contact-link" href="https://github.com/CosmoNaught" target="_blank" rel="noopener">GitHub &#8599;</a>
                     <a class="contact-link" href="https://www.linkedin.com/in/cosmo-santoni" target="_blank" rel="noopener">LinkedIn &#8599;</a>
-                    <a class="contact-link" href="https://scholar.google.com/citations?user=adjdxWcAAAAJ&hl=en&authuser=1" target="_blank" rel="noopener">Google Scholar &#8599;</a>
+                    <a class="contact-link" href="https://scholar.google.com/citations?user=adjdxWcAAAAJ&hl=en&authuser=1" target="_blank" rel="noopener"><span class="google-text"><span class="g1">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span></span> Scholar &#8599;</a>
                     <a class="contact-link" href="https://profiles.imperial.ac.uk/cosmo.santoni" target="_blank" rel="noopener">Imperial Profile &#8599;</a>
                 </div>
             </div>
@@ -2741,9 +2817,15 @@
             if (enabled) {
                 document.documentElement.setAttribute('data-plain', 'on');
                 localStorage.setItem('plain', 'on');
+                // Switch to light mode when entering 1997 mode
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
             } else {
                 document.documentElement.removeAttribute('data-plain');
                 localStorage.setItem('plain', 'off');
+                // Switch to dark mode when exiting 1997 mode
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
             }
             equalizeContact();
         }
