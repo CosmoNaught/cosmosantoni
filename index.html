@@ -64,6 +64,10 @@
             if (retro === 'on') {
               document.documentElement.setAttribute('data-retro', 'on');
             }
+            var plain = localStorage.getItem('plain');
+            if (plain === 'on') {
+              document.documentElement.setAttribute('data-plain', 'on');
+            }
           })();
         </script>
       </head>
@@ -1373,6 +1377,344 @@
             transition: opacity 0.6s var(--ease-apple), filter 0.6s var(--ease-apple);
         }
 
+        /* --- Plain-text toggle button --- */
+        .plain-toggle {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: color 0.3s var(--ease-apple), background 0.3s var(--ease-apple), border-color 0.3s var(--ease-apple);
+            flex-shrink: 0;
+        }
+        .plain-toggle:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+        .plain-toggle:focus-visible {
+            outline: 2px solid var(--accent-coral);
+            outline-offset: 2px;
+        }
+        [data-plain="on"] .plain-toggle {
+            color: blue;
+            border-color: blue;
+            background: rgba(0, 0, 255, 0.06);
+        }
+
+        /* --- Plain text mode (Yann LeCun circa 1998) --- */
+        [data-plain="on"] {
+            background: white !important;
+        }
+        [data-plain="on"] body {
+            font-family: 'Times New Roman', Times, serif !important;
+            background: white !important;
+            color: black !important;
+            line-height: 1.4 !important;
+            -webkit-font-smoothing: auto !important;
+            -moz-osx-font-smoothing: auto !important;
+        }
+
+        /* Kill all decorative layers */
+        [data-plain="on"] #fluid-bg,
+        [data-plain="on"] #crt-overlay,
+        [data-plain="on"] .hero-avatar,
+        [data-plain="on"] .collab-banner,
+        [data-plain="on"] .project-visual,
+        [data-plain="on"] .hero-badge,
+        [data-plain="on"] .hero-cta-group,
+        [data-plain="on"] .about-card::before,
+        [data-plain="on"] .footer-integrated {
+            display: none !important;
+        }
+
+        /* Strip the nav to plain text */
+        [data-plain="on"] nav {
+            position: static !important;
+            background: white !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom: 1px solid black !important;
+            padding: 8px 0 !important;
+            animation: none !important;
+            opacity: 1 !important;
+        }
+        [data-plain="on"] .nav-brand {
+            background: none !important;
+            -webkit-text-fill-color: black !important;
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            animation: none !important;
+        }
+        [data-plain="on"] .nav-link,
+        [data-plain="on"] .nav-cta {
+            color: blue !important;
+            text-decoration: underline !important;
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            font-weight: normal !important;
+            border: none !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+        [data-plain="on"] .nav-link::after { display: none !important; }
+
+        /* Strip all sections to simple flowing blocks */
+        [data-plain="on"] section {
+            padding: 20px 0 !important;
+            max-width: 700px !important;
+            margin: 0 auto !important;
+            min-height: auto !important;
+            display: block !important;
+            background: white !important;
+        }
+        [data-plain="on"] .hero {
+            padding-top: 80px !important;
+            text-align: left !important;
+        }
+        [data-plain="on"] .hero-content {
+            text-align: left !important;
+        }
+
+        /* Strip all text to plain defaults */
+        [data-plain="on"] .hero-title {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 24px !important;
+            letter-spacing: normal !important;
+            line-height: 1.3 !important;
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        [data-plain="on"] .hero-title .highlight-coral {
+            background: none !important;
+            -webkit-text-fill-color: black !important;
+            font-size: inherit !important;
+        }
+        [data-plain="on"] .hero-subtitle {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 16px !important;
+            color: black !important;
+            max-width: none !important;
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        [data-plain="on"] .highlight-coral {
+            background: none !important;
+            -webkit-text-fill-color: black !important;
+            color: black !important;
+            animation: none !important;
+            font-weight: bold !important;
+        }
+
+        /* Section headers */
+        [data-plain="on"] .section-header {
+            margin-bottom: 12px !important;
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+        [data-plain="on"] .section-label { display: none !important; }
+        [data-plain="on"] .section-title {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 20px !important;
+            letter-spacing: normal !important;
+            color: black !important;
+        }
+        [data-plain="on"] .section-title .highlight-coral {
+            -webkit-text-fill-color: black !important;
+        }
+        [data-plain="on"] .section-subtitle {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: black !important;
+        }
+
+        /* Projects as plain text blocks */
+        [data-plain="on"] .featured-project-wrapper,
+        [data-plain="on"] .secondary-project-wrapper {
+            max-width: none !important;
+            padding: 0 !important;
+        }
+        [data-plain="on"] .project-card,
+        [data-plain="on"] .project-card.featured {
+            display: block !important;
+            border: none !important;
+            border-bottom: 1px solid #ccc !important;
+            border-radius: 0 !important;
+            background: white !important;
+            box-shadow: none !important;
+            padding: 12px 0 !important;
+            color: black !important;
+            text-decoration: none !important;
+        }
+        [data-plain="on"] .project-content {
+            padding: 0 !important;
+        }
+        [data-plain="on"] .project-title {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 18px !important;
+            color: blue !important;
+            text-decoration: underline !important;
+            display: block !important;
+        }
+        [data-plain="on"] .project-description {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: black !important;
+        }
+        [data-plain="on"] .badge-group { display: none !important; }
+        [data-plain="on"] .project-stats {
+            display: block !important;
+            border-top: none !important;
+            padding-top: 4px !important;
+        }
+        [data-plain="on"] .project-stat {
+            display: inline !important;
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+        }
+        [data-plain="on"] .project-stat::after { content: ' | '; }
+        [data-plain="on"] .project-stat:last-child::after { content: ''; }
+        [data-plain="on"] .stat-value,
+        [data-plain="on"] .stat-label {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: black !important;
+            display: inline !important;
+        }
+        [data-plain="on"] .stat-value { font-weight: bold !important; }
+        [data-plain="on"] .stat-label::before { content: ' '; }
+
+        /* About cards as plain list */
+        [data-plain="on"] .about-wrapper {
+            max-width: none !important;
+        }
+        [data-plain="on"] .about-grid {
+            display: block !important;
+            gap: 0 !important;
+        }
+        [data-plain="on"] .about-card {
+            background: white !important;
+            border: none !important;
+            border-bottom: 1px solid #ccc !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            padding: 12px 0 !important;
+        }
+        [data-plain="on"] .about-card:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        [data-plain="on"] .card-eyebrow {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 12px !important;
+            color: gray !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+        }
+        [data-plain="on"] .about-card h3 {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 16px !important;
+            color: black !important;
+        }
+        [data-plain="on"] .about-card p {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: black !important;
+        }
+        [data-plain="on"] .about-lede,
+        [data-plain="on"] .about-outro {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: black !important;
+        }
+        [data-plain="on"] .about-outro strong { color: black !important; }
+
+        /* Contact as plain links */
+        [data-plain="on"] .contact {
+            padding: 20px 0 !important;
+        }
+        [data-plain="on"] .contact-wrapper {
+            align-items: flex-start !important;
+        }
+        [data-plain="on"] .contact-card {
+            background: white !important;
+            border: none !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            padding: 0 !important;
+            text-align: left !important;
+        }
+        [data-plain="on"] .contact-cta {
+            display: block !important;
+            gap: 0 !important;
+        }
+        [data-plain="on"] .btn {
+            display: inline !important;
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: blue !important;
+            text-decoration: underline !important;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin-right: 16px !important;
+            box-shadow: none !important;
+            width: auto !important;
+        }
+        [data-plain="on"] .btn span { display: none !important; }
+        [data-plain="on"] .contact-links {
+            display: block !important;
+            margin-top: 8px !important;
+            gap: 0 !important;
+        }
+        [data-plain="on"] .contact-link {
+            font-family: 'Times New Roman', Times, serif !important;
+            font-size: 14px !important;
+            color: blue !important;
+            text-decoration: underline !important;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            margin-right: 16px !important;
+            display: inline !important;
+            width: auto !important;
+        }
+
+        /* Reveal animations: just show everything */
+        [data-plain="on"] .reveal {
+            opacity: 1 !important;
+            transform: none !important;
+            animation: none !important;
+        }
+
+        /* Mobile menu in plain mode */
+        [data-plain="on"] .mobile-menu {
+            background: white !important;
+            backdrop-filter: none !important;
+        }
+        [data-plain="on"] .mobile-link,
+        [data-plain="on"] .mobile-cta {
+            font-family: 'Times New Roman', Times, serif !important;
+            color: blue !important;
+            text-decoration: underline !important;
+            background: none !important;
+            border: none !important;
+        }
+
+        /* Scrollbar: default */
+        [data-plain="on"] ::-webkit-scrollbar { display: none; }
+
         /* --- Reduced motion --- */
         @media (prefers-reduced-motion: reduce) {
             nav, .hero-badge, .hero-title, .hero-subtitle, .hero-cta-group, .collab-banner {
@@ -1532,6 +1874,15 @@
               <line x1="5" y1="7" x2="19" y2="7" stroke-width="1" opacity="0.5"/>
               <line x1="5" y1="10" x2="19" y2="10" stroke-width="1" opacity="0.5"/>
               <line x1="5" y1="13" x2="19" y2="13" stroke-width="1" opacity="0.5"/>
+            </svg>
+          </button>
+
+          <button class="plain-toggle" id="plainToggle" aria-label="Toggle plain text mode" title="Plain text mode (circa 1998)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="8" y1="13" x2="16" y2="13"/>
+              <line x1="8" y1="17" x2="13" y2="17"/>
             </svg>
           </button>
 
@@ -1895,6 +2246,9 @@
 
         function setRetroMode(enabled) {
             if (enabled) {
+                // Mutual exclusion: turn off plain mode
+                document.documentElement.removeAttribute('data-plain');
+                localStorage.setItem('plain', 'off');
                 document.documentElement.setAttribute('data-retro', 'on');
                 localStorage.setItem('retro', 'on');
                 initCrtNoise();
@@ -1925,6 +2279,31 @@
                 initCrtNoise();
             }
         });
+
+        // --- Plain text mode toggle ---
+        const plainToggle = document.getElementById('plainToggle');
+
+        function setPlainMode(enabled) {
+            if (enabled) {
+                // Mutual exclusion: turn off retro mode
+                if (document.documentElement.getAttribute('data-retro') === 'on') {
+                    setRetroMode(false);
+                }
+                document.documentElement.setAttribute('data-plain', 'on');
+                localStorage.setItem('plain', 'on');
+            } else {
+                document.documentElement.removeAttribute('data-plain');
+                localStorage.setItem('plain', 'off');
+            }
+            equalizeContact();
+        }
+
+        if (plainToggle) {
+            plainToggle.addEventListener('click', () => {
+                const isPlain = document.documentElement.getAttribute('data-plain') === 'on';
+                setPlainMode(!isPlain);
+            });
+        }
 
         // --- Mobile menu toggle ---
         const navToggle = document.getElementById('navToggle');
