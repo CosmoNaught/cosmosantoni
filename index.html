@@ -1447,6 +1447,31 @@
             0%, 49% { opacity: 1; }
             50%, 100% { opacity: 0; }
         }
+        @keyframes rainbow90s {
+            0% { color: #ff0000; }
+            16% { color: #ff8800; }
+            33% { color: #ffff00; }
+            50% { color: #00ff00; }
+            66% { color: #0088ff; }
+            83% { color: #8800ff; }
+            100% { color: #ff0000; }
+        }
+        @keyframes marquee90s {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes navRainbow90s {
+            0% { background-color: #000080; }
+            20% { background-color: #800080; }
+            40% { background-color: #008080; }
+            60% { background-color: #800000; }
+            80% { background-color: #006600; }
+            100% { background-color: #000080; }
+        }
+        @keyframes bgScroll90s {
+            0% { background-position: 0 0, 15px 15px; }
+            100% { background-position: 200px 200px, 215px 215px; }
+        }
 
         /* --- LIGHT plain text (default) --- */
         [data-plain="on"] {
@@ -1455,8 +1480,14 @@
         [data-plain="on"] body {
             font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive !important;
             background: #ffffcc !important;
+            background-image:
+                radial-gradient(circle, #000080 1px, transparent 1px),
+                radial-gradient(circle, #800000 0.5px, transparent 0.5px) !important;
+            background-size: 60px 60px, 37px 37px !important;
+            background-position: 0 0, 18px 18px !important;
             color: #000080 !important;
             line-height: 1.5 !important;
+            cursor: crosshair !important;
             -webkit-font-smoothing: auto !important;
             -moz-osx-font-smoothing: auto !important;
         }
@@ -1467,6 +1498,12 @@
         }
         [data-plain="on"][data-theme="dark"] body {
             background: #000033 !important;
+            background-image:
+                radial-gradient(circle, #ffffff 1px, transparent 1px),
+                radial-gradient(circle, #ffff00 0.5px, transparent 0.5px) !important;
+            background-size: 50px 50px, 31px 31px !important;
+            background-position: 0 0, 15px 15px !important;
+            animation: bgScroll90s 60s linear infinite !important;
             color: #00ff00 !important;
         }
 
@@ -1487,13 +1524,18 @@
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             border-bottom: 3px solid #ffff00 !important;
+            border-top: 3px solid #ffff00 !important;
             padding: 8px 0 !important;
-            animation: none !important;
+            animation: navRainbow90s 8s linear infinite !important;
             opacity: 1 !important;
         }
         [data-plain="on"][data-theme="dark"] nav {
             background: #003300 !important;
             border-bottom-color: #00ff00 !important;
+            border-top-color: #00ff00 !important;
+            animation: none !important;
+            background: #000033 !important;
+            border-image: repeating-linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0000) 3 !important;
         }
         [data-plain="on"] .nav-brand {
             background: none !important;
@@ -1914,8 +1956,214 @@
             color: #00ffff !important;
         }
 
-        /* Scrollbar: default */
-        [data-plain="on"] ::-webkit-scrollbar { display: none; }
+        /* --- 90s CHAOS ENHANCEMENTS --- */
+
+        /* 3D embossed text on all headers */
+        [data-plain="on"] .hero-title,
+        [data-plain="on"] .section-title {
+            text-shadow: 2px 2px 0 #888, 3px 3px 0 #666, 4px 4px 0 #444 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .hero-title,
+        [data-plain="on"][data-theme="dark"] .section-title {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 2px 2px 0 #000 !important;
+        }
+
+        /* Rainbow cycling section labels */
+        [data-plain="on"] .section-label {
+            animation: rainbow90s 2s linear infinite !important;
+            font-weight: bold !important;
+            font-size: 13px !important;
+        }
+
+        /* Neon glow on all links in dark mode */
+        [data-plain="on"][data-theme="dark"] .nav-link,
+        [data-plain="on"][data-theme="dark"] .nav-cta,
+        [data-plain="on"][data-theme="dark"] .project-title,
+        [data-plain="on"][data-theme="dark"] .contact-link {
+            text-shadow: 0 0 8px currentColor, 0 0 16px currentColor !important;
+        }
+
+        /* Hero avatar: pixelated, thick border, drop shadow */
+        [data-plain="on"] .hero-avatar {
+            border: 4px solid #000080 !important;
+            border-radius: 0 !important;
+            image-rendering: pixelated !important;
+            box-shadow: 5px 5px 0 #888 !important;
+            width: 80px !important;
+            height: 80px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .hero-avatar {
+            border-color: #00ff00 !important;
+            box-shadow: 5px 5px 0 #003300, 0 0 15px #00ff00 !important;
+        }
+
+        /* Striped about cards like old HTML tables */
+        [data-plain="on"] .about-card:nth-child(odd) {
+            background: rgba(0, 0, 128, 0.06) !important;
+        }
+        [data-plain="on"] .about-card:nth-child(even) {
+            background: rgba(128, 0, 0, 0.06) !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card:nth-child(odd) {
+            background: rgba(0, 255, 0, 0.05) !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card:nth-child(even) {
+            background: rgba(0, 255, 255, 0.05) !important;
+        }
+
+        /* "NEW!" blinking marker on featured project */
+        [data-plain="on"] .project-card.featured .project-title::after {
+            content: '  NEW!!' !important;
+            color: #ff0000 !important;
+            font-size: 12px !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            animation: blink90s 0.6s step-end infinite !important;
+        }
+        [data-plain="on"][data-theme="dark"] .project-card.featured .project-title::after {
+            color: #ff6600 !important;
+        }
+
+        /* Badges spin on hover */
+        [data-plain="on"] .project-badge {
+            transition: transform 0.4s ease !important;
+        }
+        [data-plain="on"] .project-badge:hover {
+            transform: rotate(360deg) scale(1.2) !important;
+        }
+
+        /* Section borders: rainbow in dark mode */
+        [data-plain="on"][data-theme="dark"] .hero {
+            border-image: repeating-linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0000) 3 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .section-header {
+            border-image: repeating-linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0000) 2 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .contact {
+            border-image: repeating-linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0000) 3 !important;
+        }
+
+        /* Visited links go purple */
+        [data-plain="on"] a:visited { color: #800080 !important; }
+        [data-plain="on"][data-theme="dark"] a:visited { color: #cc66ff !important; }
+
+        /* Buttons get chunkier with hover inset effect */
+        [data-plain="on"] .btn:hover,
+        [data-plain="on"] .hero-cta-group .btn:hover {
+            border-style: inset !important;
+            background: #800000 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .btn:hover {
+            background: #006600 !important;
+        }
+
+        /* Project cards get drop shadows and thicker borders */
+        [data-plain="on"] .project-card,
+        [data-plain="on"] .project-card.featured {
+            border: 3px ridge #808080 !important;
+            box-shadow: 5px 5px 0 #888 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .project-card,
+        [data-plain="on"][data-theme="dark"] .project-card.featured {
+            border: 3px ridge #006600 !important;
+            box-shadow: 5px 5px 0 #003300 !important;
+        }
+
+        /* About cards ridge border */
+        [data-plain="on"] .about-card {
+            border: 2px ridge #808080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card {
+            border: 2px ridge #006600 !important;
+        }
+
+        /* 90s-only elements (hidden by default, shown in plain mode) */
+        .plain-marquee,
+        .plain-footer-90s {
+            display: none;
+        }
+        [data-plain="on"] .plain-marquee {
+            display: block !important;
+            background: #ff0000 !important;
+            color: #ffff00 !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+            padding: 4px 0 !important;
+            border-bottom: 2px solid #ffff00 !important;
+            border-top: 2px solid #ffff00 !important;
+            overflow: hidden !important;
+        }
+        [data-plain="on"][data-theme="dark"] .plain-marquee {
+            background: #330000 !important;
+            color: #00ff00 !important;
+            border-color: #00ff00 !important;
+        }
+        [data-plain="on"] .plain-marquee-inner {
+            display: inline-block !important;
+            white-space: nowrap !important;
+            animation: marquee90s 15s linear infinite !important;
+        }
+        [data-plain="on"] .plain-footer-90s {
+            display: block !important;
+            text-align: center !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 11px !important;
+            color: #808080 !important;
+            padding: 16px !important;
+            border-top: 3px ridge #808080 !important;
+            max-width: 760px !important;
+            margin: 0 auto !important;
+        }
+        [data-plain="on"] .plain-footer-90s a {
+            color: #0000ff !important;
+        }
+        [data-plain="on"][data-theme="dark"] .plain-footer-90s {
+            color: #009900 !important;
+            border-top-color: #006600 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .plain-footer-90s a {
+            color: #00ffff !important;
+        }
+        [data-plain="on"] .plain-counter {
+            font-family: 'Courier New', monospace !important;
+            background: #000 !important;
+            color: #00ff00 !important;
+            display: inline-block !important;
+            padding: 2px 8px !important;
+            border: 2px inset #808080 !important;
+            letter-spacing: 3px !important;
+            margin: 4px 0 !important;
+        }
+        [data-plain="on"] .plain-construction {
+            animation: blink90s 1s step-end infinite !important;
+            color: #ff0000 !important;
+            font-weight: bold !important;
+        }
+
+        /* Win95 scrollbar */
+        [data-plain="on"] ::-webkit-scrollbar {
+            display: block !important;
+            width: 18px !important;
+        }
+        [data-plain="on"] ::-webkit-scrollbar-track {
+            background: #c0c0c0 !important;
+            border: 1px solid #808080 !important;
+        }
+        [data-plain="on"] ::-webkit-scrollbar-thumb {
+            background: #c0c0c0 !important;
+            border: 2px outset #dfdfdf !important;
+        }
+        [data-plain="on"] ::-webkit-scrollbar-thumb:hover {
+            background: #a0a0a0 !important;
+        }
+        [data-plain="on"][data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #000033 !important;
+            border-color: #003300 !important;
+        }
+        [data-plain="on"][data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: #003300 !important;
+            border: 2px outset #006600 !important;
+        }
 
         /* --- Reduced motion --- */
         @media (prefers-reduced-motion: reduce) {
@@ -1937,6 +2185,13 @@
     </style>
 </head>
 <body>
+
+    <!-- 90s plain text mode elements (hidden by default) -->
+    <div class="plain-marquee" aria-hidden="true">
+        <div class="plain-marquee-inner">
+            &#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733; Best viewed at 800x600 &#9733; &#9733; &#9733;
+        </div>
+    </div>
 
     <!-- Fluid dynamics background -->
     <canvas id="fluid-bg"></canvas>
@@ -2079,7 +2334,7 @@
             </svg>
           </button>
 
-          <button class="plain-toggle" id="plainToggle" aria-label="Toggle plain text mode" title="Plain text mode (circa 1998)">
+          <button class="plain-toggle" id="plainToggle" aria-label="Toggle plain text mode" title="1997 mode">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -2605,5 +2860,18 @@
         });
         window.addEventListener('resize', equalizeContact);
     </script>
+
+    <!-- 90s plain text footer (hidden by default) -->
+    <div class="plain-footer-90s" aria-hidden="true">
+        <hr style="border:none;border-top:2px ridge #808080;margin:8px 0">
+        <p class="plain-construction">&#128679; UNDER CONSTRUCTION &#128679;</p>
+        <p>This page was lovingly hand-crafted in <b>vim</b></p>
+        <p>Best viewed in <b>Netscape Navigator 4.0</b> at <b>800x600</b> resolution</p>
+        <p>&#9993; <b>Email:</b> santonicosmo@gmail.com</p>
+        <hr style="border:none;border-top:1px dashed #808080;margin:8px 0">
+        <p>&copy; 1997-2026 Cosmo Santoni. All rights reserved.<br>No part of this website may be reproduced without express written permission.</p>
+        <p style="font-size:9px;color:#aaa">Made on a rainy afternoon with too much coffee and not enough CSS knowledge</p>
+    </div>
+
 </body>
 </html>
