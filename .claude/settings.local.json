@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(git -C \"d:/Imperial College London/Admin/cosmosantoni\" log --oneline -5)",
+      "Bash(move:*)"
+    ]
+  }
+}
