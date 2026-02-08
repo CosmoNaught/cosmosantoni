@@ -60,6 +60,10 @@
               theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
             document.documentElement.setAttribute('data-theme', theme);
+            var retro = localStorage.getItem('retro');
+            if (retro === 'on') {
+              document.documentElement.setAttribute('data-retro', 'on');
+            }
           })();
         </script>
       </head>
@@ -90,6 +94,14 @@
             --nav-bg: rgba(251, 251, 253, 0.72);
             --logo-item-bg: rgba(255,255,255,0.7);
             --mobile-menu-bg: rgba(251, 251, 253, 0.96);
+        }
+
+        @font-face {
+            font-family: 'Dungeon';
+            src: url('assets/font/dungeon-mode.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
         }
 
         [data-theme="dark"] {
@@ -1231,6 +1243,136 @@
             background: #555;
         }
 
+        /* --- Retro toggle button --- */
+        .retro-toggle {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: color 0.3s var(--ease-apple), background 0.3s var(--ease-apple), border-color 0.3s var(--ease-apple);
+            flex-shrink: 0;
+        }
+        .retro-toggle:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+        .retro-toggle:focus-visible {
+            outline: 2px solid var(--accent-coral);
+            outline-offset: 2px;
+        }
+        [data-retro="on"] .retro-toggle {
+            color: var(--accent-coral);
+            border-color: rgba(255, 94, 91, 0.4);
+            background: rgba(255, 94, 91, 0.08);
+        }
+
+        /* --- CRT overlay (retro mode) --- */
+        #crt-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10000;
+            display: none;
+        }
+        [data-retro="on"] #crt-overlay { display: block; }
+
+        #crt-overlay > * {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+        #crt-scanlines {
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.3) 0px,
+                rgba(0, 0, 0, 0.3) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            background-size: 100% 3px;
+            mix-blend-mode: multiply;
+        }
+        #crt-noise {
+            opacity: 0.10;
+            mix-blend-mode: overlay;
+        }
+        #crt-vignette {
+            background: radial-gradient(
+                ellipse 85% 80% at 50% 50%,
+                transparent 50%,
+                rgba(0, 0, 0, 0.3) 75%,
+                rgba(0, 0, 0, 0.75) 100%
+            );
+        }
+        #crt-warm {
+            background: linear-gradient(
+                180deg,
+                rgba(120, 80, 40, 0.03) 0%,
+                rgba(80, 60, 30, 0.05) 50%,
+                rgba(120, 80, 40, 0.03) 100%
+            );
+            mix-blend-mode: color;
+        }
+
+        /* --- Retro mode: font swap --- */
+        [data-retro="on"] body {
+            font-family: 'Dungeon', monospace;
+            -webkit-font-smoothing: none;
+            -moz-osx-font-smoothing: unset;
+        }
+        [data-retro="on"] .nav-brand,
+        [data-retro="on"] .nav-link,
+        [data-retro="on"] .nav-cta,
+        [data-retro="on"] .hero-badge,
+        [data-retro="on"] .hero-title,
+        [data-retro="on"] .hero-subtitle,
+        [data-retro="on"] .section-label,
+        [data-retro="on"] .section-title,
+        [data-retro="on"] .section-subtitle,
+        [data-retro="on"] .project-title,
+        [data-retro="on"] .project-description,
+        [data-retro="on"] .project-badge,
+        [data-retro="on"] .stat-value,
+        [data-retro="on"] .stat-label,
+        [data-retro="on"] .about-card h3,
+        [data-retro="on"] .about-card p,
+        [data-retro="on"] .about-lede,
+        [data-retro="on"] .about-outro,
+        [data-retro="on"] .card-eyebrow,
+        [data-retro="on"] .contact-sub,
+        [data-retro="on"] .contact-link,
+        [data-retro="on"] .btn,
+        [data-retro="on"] .mobile-link,
+        [data-retro="on"] .mobile-cta,
+        [data-retro="on"] .footer-text,
+        [data-retro="on"] .collab-heading {
+            font-family: 'Dungeon', monospace;
+        }
+        [data-retro="on"] .hero-subtitle,
+        [data-retro="on"] .project-description,
+        [data-retro="on"] .about-card p,
+        [data-retro="on"] .about-lede,
+        [data-retro="on"] .about-outro,
+        [data-retro="on"] .contact-sub {
+            letter-spacing: 0.02em;
+            line-height: 1.8;
+        }
+
+        /* --- Retro mode: dim fluid background --- */
+        [data-retro="on"] #fluid-bg {
+            opacity: 0.08;
+            filter: grayscale(0.6) brightness(0.7);
+            transition: opacity 0.6s var(--ease-apple), filter 0.6s var(--ease-apple);
+        }
+
         /* --- Reduced motion --- */
         @media (prefers-reduced-motion: reduce) {
             nav, .hero-badge, .hero-title, .hero-subtitle, .hero-cta-group, .collab-banner {
@@ -1240,10 +1382,13 @@
             }
             .project-logo.mintverse { animation: none; }
             #fluid-bg { display: none; }
+            #crt-noise { display: none; }
+            #crt-scanlines { opacity: 0.5; }
         }
 
         @media print {
             #fluid-bg { display: none; }
+            #crt-overlay { display: none !important; }
         }
     </style>
 </head>
@@ -1349,6 +1494,14 @@
     })();
     </script>
 
+    <!-- CRT overlay (retro mode) -->
+    <div id="crt-overlay" aria-hidden="true">
+        <div id="crt-scanlines"></div>
+        <canvas id="crt-noise"></canvas>
+        <div id="crt-vignette"></div>
+        <div id="crt-warm"></div>
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
@@ -1368,6 +1521,17 @@
             <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="5"/>
               <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+
+          <button class="retro-toggle" id="retroToggle" aria-label="Toggle retro CRT mode" title="Retro mode">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <line x1="5" y1="7" x2="19" y2="7" stroke-width="1" opacity="0.5"/>
+              <line x1="5" y1="10" x2="19" y2="10" stroke-width="1" opacity="0.5"/>
+              <line x1="5" y1="13" x2="19" y2="13" stroke-width="1" opacity="0.5"/>
             </svg>
           </button>
 
@@ -1667,6 +1831,100 @@
                 localStorage.setItem('theme', next);
             });
         }
+
+        // --- Retro CRT mode toggle ---
+        const retroToggle = document.getElementById('retroToggle');
+        const crtNoiseCanvas = document.getElementById('crt-noise');
+        let crtNoiseCtx = null;
+        let crtAnimationId = null;
+
+        function initCrtNoise() {
+            if (!crtNoiseCanvas) return;
+            crtNoiseCanvas.width = Math.floor(window.innerWidth / 4);
+            crtNoiseCanvas.height = Math.floor(window.innerHeight / 4);
+            crtNoiseCtx = crtNoiseCanvas.getContext('2d');
+        }
+
+        function renderCrtNoise() {
+            if (!crtNoiseCtx) return;
+            const w = crtNoiseCanvas.width;
+            const h = crtNoiseCanvas.height;
+            const imageData = crtNoiseCtx.createImageData(w, h);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const v = Math.random() * 255;
+                data[i] = v;
+                data[i + 1] = v;
+                data[i + 2] = v;
+                data[i + 3] = 20;
+            }
+            crtNoiseCtx.putImageData(imageData, 0, 0);
+        }
+
+        function renderCrtFlicker() {
+            const overlay = document.getElementById('crt-overlay');
+            if (!overlay) return;
+            overlay.style.opacity = 1 - (Math.random() * 0.04);
+        }
+
+        function startCrtAnimation() {
+            let lastNoise = 0;
+            let lastFlicker = 0;
+            function animate(time) {
+                if (time - lastNoise > 80) {
+                    renderCrtNoise();
+                    lastNoise = time;
+                }
+                if (time - lastFlicker > 120) {
+                    renderCrtFlicker();
+                    lastFlicker = time;
+                }
+                crtAnimationId = requestAnimationFrame(animate);
+            }
+            crtAnimationId = requestAnimationFrame(animate);
+        }
+
+        function stopCrtAnimation() {
+            if (crtAnimationId) {
+                cancelAnimationFrame(crtAnimationId);
+                crtAnimationId = null;
+            }
+            const overlay = document.getElementById('crt-overlay');
+            if (overlay) overlay.style.opacity = '';
+        }
+
+        function setRetroMode(enabled) {
+            if (enabled) {
+                document.documentElement.setAttribute('data-retro', 'on');
+                localStorage.setItem('retro', 'on');
+                initCrtNoise();
+                startCrtAnimation();
+            } else {
+                document.documentElement.removeAttribute('data-retro');
+                localStorage.setItem('retro', 'off');
+                stopCrtAnimation();
+            }
+            equalizeContact();
+        }
+
+        if (retroToggle) {
+            retroToggle.addEventListener('click', () => {
+                const isRetro = document.documentElement.getAttribute('data-retro') === 'on';
+                setRetroMode(!isRetro);
+            });
+        }
+
+        // Auto-init retro if it was on
+        if (document.documentElement.getAttribute('data-retro') === 'on') {
+            initCrtNoise();
+            startCrtAnimation();
+        }
+
+        window.addEventListener('resize', () => {
+            if (document.documentElement.getAttribute('data-retro') === 'on') {
+                initCrtNoise();
+            }
+        });
 
         // --- Mobile menu toggle ---
         const navToggle = document.getElementById('navToggle');

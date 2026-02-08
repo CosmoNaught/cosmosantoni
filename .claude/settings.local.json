@@ -4,7 +4,9 @@
       "Bash(dir:*)",
       "Bash(powershell -Command:*)",
       "Bash(git -C \"d:/Imperial College London/Admin/cosmosantoni\" log --oneline -5)",
-      "Bash(move:*)"
+      "Bash(move:*)",
+      "Bash(ls -la \"d:\\\\Imperial College London\\\\Admin\\\\cosmosantoni\\\\assets\"\" 2>&1 || echo \"Directory listing failed \")",
+      "Bash(ls \"d:\\\\Imperial College London\\\\Admin\\\\cosmosantoni\\\\assets\\\\font\"\" 2>nul || echo \"Directory not found \")"
     ]
   }
 }
