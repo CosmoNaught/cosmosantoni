@@ -1326,9 +1326,10 @@
             mix-blend-mode: color;
         }
 
-        /* --- Retro mode: font swap --- */
+        /* --- Retro mode: font swap + 50% size reduction --- */
         [data-retro="on"] body {
             font-family: 'Dungeon', monospace;
+            font-size: 50%;
             -webkit-font-smoothing: none;
             -moz-osx-font-smoothing: unset;
         }
@@ -1369,6 +1370,36 @@
             letter-spacing: 0.02em;
             line-height: 1.8;
         }
+        /* Retro mode: uniform pixel font size (terminal style) */
+        [data-retro="on"] .nav-brand,
+        [data-retro="on"] .nav-link,
+        [data-retro="on"] .nav-cta,
+        [data-retro="on"] .hero-badge,
+        [data-retro="on"] .hero-subtitle,
+        [data-retro="on"] .btn,
+        [data-retro="on"] .section-title,
+        [data-retro="on"] .section-subtitle,
+        [data-retro="on"] .project-badge,
+        [data-retro="on"] .project-title,
+        [data-retro="on"] .project-card.featured .project-title,
+        [data-retro="on"] .project-description,
+        [data-retro="on"] .project-description strong,
+        [data-retro="on"] .stat-value,
+        [data-retro="on"] .stat-label,
+        [data-retro="on"] .about-card h3,
+        [data-retro="on"] .about-card p,
+        [data-retro="on"] .about-lede,
+        [data-retro="on"] .about-outro,
+        [data-retro="on"] .card-eyebrow,
+        [data-retro="on"] .contact-sub,
+        [data-retro="on"] .contact-link,
+        [data-retro="on"] .collab-heading,
+        [data-retro="on"] .footer-text,
+        [data-retro="on"] .mobile-link,
+        [data-retro="on"] .mobile-cta {
+            font-size: 14px !important;
+        }
+        [data-retro="on"] .btn { padding: 8px 16px; }
 
         /* --- Retro mode: dim fluid background --- */
         [data-retro="on"] #fluid-bg {
@@ -1406,27 +1437,44 @@
             background: rgba(0, 0, 255, 0.06);
         }
 
-        /* --- Plain text mode (Yann LeCun circa 1998) --- */
+        /* ============================================================
+           PLAIN TEXT MODE — Circa 1998
+           "Best viewed in Netscape Navigator 4.0 at 800×600"
+           ============================================================ */
+
+        /* Blinking text animation for the true 90s experience */
+        @keyframes blink90s {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* --- LIGHT plain text (default) --- */
         [data-plain="on"] {
-            background: white !important;
+            background: #ffffcc !important;
         }
         [data-plain="on"] body {
-            font-family: 'Times New Roman', Times, serif !important;
-            background: white !important;
-            color: black !important;
-            line-height: 1.4 !important;
+            font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive !important;
+            background: #ffffcc !important;
+            color: #000080 !important;
+            line-height: 1.5 !important;
             -webkit-font-smoothing: auto !important;
             -moz-osx-font-smoothing: auto !important;
         }
 
+        /* --- DARK plain text --- */
+        [data-plain="on"][data-theme="dark"] {
+            background: #000033 !important;
+        }
+        [data-plain="on"][data-theme="dark"] body {
+            background: #000033 !important;
+            color: #00ff00 !important;
+        }
+
         /* Kill all decorative layers */
         [data-plain="on"] #fluid-bg,
-        [data-plain="on"] #crt-overlay,
-        [data-plain="on"] .hero-avatar,
         [data-plain="on"] .collab-banner,
         [data-plain="on"] .project-visual,
         [data-plain="on"] .hero-badge,
-        [data-plain="on"] .hero-cta-group,
         [data-plain="on"] .about-card::before,
         [data-plain="on"] .footer-integrated {
             display: none !important;
@@ -1435,108 +1483,189 @@
         /* Strip the nav to plain text */
         [data-plain="on"] nav {
             position: static !important;
-            background: white !important;
+            background: #000080 !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            border-bottom: 1px solid black !important;
+            border-bottom: 3px solid #ffff00 !important;
             padding: 8px 0 !important;
             animation: none !important;
             opacity: 1 !important;
         }
+        [data-plain="on"][data-theme="dark"] nav {
+            background: #003300 !important;
+            border-bottom-color: #00ff00 !important;
+        }
         [data-plain="on"] .nav-brand {
             background: none !important;
-            -webkit-text-fill-color: black !important;
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 16px !important;
+            -webkit-text-fill-color: #ffff00 !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 18px !important;
             font-weight: bold !important;
             animation: none !important;
         }
+        [data-plain="on"][data-theme="dark"] .nav-brand {
+            -webkit-text-fill-color: #00ff00 !important;
+        }
         [data-plain="on"] .nav-link,
         [data-plain="on"] .nav-cta {
-            color: blue !important;
+            color: #00ffff !important;
             text-decoration: underline !important;
-            font-family: 'Times New Roman', Times, serif !important;
+            font-family: 'Comic Sans MS', cursive !important;
             font-size: 14px !important;
             font-weight: normal !important;
             border: none !important;
             background: none !important;
             padding: 0 !important;
         }
+        [data-plain="on"][data-theme="dark"] .nav-link,
+        [data-plain="on"][data-theme="dark"] .nav-cta {
+            color: #ffff00 !important;
+        }
         [data-plain="on"] .nav-link::after { display: none !important; }
 
-        /* Strip all sections to simple flowing blocks */
+        /* Strip all sections */
         [data-plain="on"] section {
-            padding: 20px 0 !important;
-            max-width: 700px !important;
+            padding: 10px 16px !important;
+            max-width: 760px !important;
             margin: 0 auto !important;
             min-height: auto !important;
             display: block !important;
-            background: white !important;
+            background: transparent !important;
         }
         [data-plain="on"] .hero {
-            padding-top: 80px !important;
-            text-align: left !important;
+            padding-top: 70px !important;
+            text-align: center !important;
+            border-bottom: 3px double #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .hero {
+            border-bottom-color: #00ff00 !important;
         }
         [data-plain="on"] .hero-content {
-            text-align: left !important;
+            text-align: center !important;
+        }
+        [data-plain="on"] .hero-cta-group {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
         }
 
-        /* Strip all text to plain defaults */
+        /* Hero title */
         [data-plain="on"] .hero-title {
             font-family: 'Times New Roman', Times, serif !important;
-            font-size: 24px !important;
+            font-size: 28px !important;
             letter-spacing: normal !important;
             line-height: 1.3 !important;
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;
+            color: #cc0000 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .hero-title {
+            color: #ff6600 !important;
         }
         [data-plain="on"] .hero-title .highlight-coral {
             background: none !important;
-            -webkit-text-fill-color: black !important;
+            -webkit-text-fill-color: #cc0000 !important;
             font-size: inherit !important;
+            animation: blink90s 1s step-end infinite !important;
+            display: inline !important;
+        }
+        [data-plain="on"][data-theme="dark"] .hero-title .highlight-coral {
+            -webkit-text-fill-color: #ff6600 !important;
         }
         [data-plain="on"] .hero-subtitle {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 16px !important;
-            color: black !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 14px !important;
+            color: #000080 !important;
             max-width: none !important;
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;
         }
+        [data-plain="on"][data-theme="dark"] .hero-subtitle {
+            color: #00ff00 !important;
+        }
         [data-plain="on"] .highlight-coral {
             background: none !important;
-            -webkit-text-fill-color: black !important;
-            color: black !important;
+            -webkit-text-fill-color: #cc0000 !important;
+            color: #cc0000 !important;
             animation: none !important;
             font-weight: bold !important;
         }
+        [data-plain="on"][data-theme="dark"] .highlight-coral {
+            -webkit-text-fill-color: #ffff00 !important;
+            color: #ffff00 !important;
+        }
 
-        /* Section headers */
+        /* CTAs as 90s buttons */
+        [data-plain="on"] .hero-cta-group .btn {
+            display: inline-block !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 14px !important;
+            color: white !important;
+            background: #000080 !important;
+            border: 3px outset #8888ff !important;
+            padding: 6px 16px !important;
+            text-decoration: none !important;
+            margin: 4px !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            width: auto !important;
+        }
+        [data-plain="on"] .hero-cta-group .btn span { display: none !important; }
+        [data-plain="on"][data-theme="dark"] .hero-cta-group .btn {
+            background: #003300 !important;
+            border-color: #00ff00 !important;
+            color: #00ff00 !important;
+        }
+
+        /* Section headers with horizontal rules */
         [data-plain="on"] .section-header {
-            margin-bottom: 12px !important;
+            margin-bottom: 8px !important;
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;
+            border-bottom: 2px solid #000080 !important;
+            padding-bottom: 4px !important;
         }
-        [data-plain="on"] .section-label { display: none !important; }
+        [data-plain="on"][data-theme="dark"] .section-header {
+            border-bottom-color: #00ff00 !important;
+        }
+        [data-plain="on"] .section-label {
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 10px !important;
+            color: #666 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .section-label {
+            color: #009900 !important;
+        }
         [data-plain="on"] .section-title {
             font-family: 'Times New Roman', Times, serif !important;
-            font-size: 20px !important;
+            font-size: 22px !important;
             letter-spacing: normal !important;
-            color: black !important;
+            color: #800000 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .section-title {
+            color: #ff6600 !important;
         }
         [data-plain="on"] .section-title .highlight-coral {
-            -webkit-text-fill-color: black !important;
+            -webkit-text-fill-color: #800000 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .section-title .highlight-coral {
+            -webkit-text-fill-color: #ff6600 !important;
         }
         [data-plain="on"] .section-subtitle {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: black !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .section-subtitle {
+            color: #00cc00 !important;
         }
 
-        /* Projects as plain text blocks */
+        /* Projects as plain text blocks with beveled borders */
         [data-plain="on"] .featured-project-wrapper,
         [data-plain="on"] .secondary-project-wrapper {
             max-width: none !important;
@@ -1545,14 +1674,20 @@
         [data-plain="on"] .project-card,
         [data-plain="on"] .project-card.featured {
             display: block !important;
-            border: none !important;
-            border-bottom: 1px solid #ccc !important;
+            border: 2px inset #888 !important;
             border-radius: 0 !important;
-            background: white !important;
+            background: transparent !important;
             box-shadow: none !important;
-            padding: 12px 0 !important;
-            color: black !important;
+            padding: 12px !important;
+            margin-bottom: 12px !important;
+            min-height: 0 !important;
+            color: #000080 !important;
             text-decoration: none !important;
+        }
+        [data-plain="on"][data-theme="dark"] .project-card,
+        [data-plain="on"][data-theme="dark"] .project-card.featured {
+            border-color: #006600 !important;
+            color: #00ff00 !important;
         }
         [data-plain="on"] .project-content {
             padding: 0 !important;
@@ -1560,39 +1695,69 @@
         [data-plain="on"] .project-title {
             font-family: 'Times New Roman', Times, serif !important;
             font-size: 18px !important;
-            color: blue !important;
+            color: #0000ff !important;
             text-decoration: underline !important;
             display: block !important;
         }
-        [data-plain="on"] .project-description {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: black !important;
+        [data-plain="on"][data-theme="dark"] .project-title {
+            color: #00ffff !important;
         }
-        [data-plain="on"] .badge-group { display: none !important; }
+        [data-plain="on"] .project-description {
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .project-description {
+            color: #00cc00 !important;
+        }
+        [data-plain="on"] .badge-group {
+            display: block !important;
+        }
+        [data-plain="on"] .project-badge {
+            font-family: 'Courier New', monospace !important;
+            font-size: 11px !important;
+            background: #ff0000 !important;
+            color: #ffff00 !important;
+            border: 1px solid #ffff00 !important;
+            border-radius: 0 !important;
+            padding: 1px 6px !important;
+            display: inline !important;
+            animation: blink90s 1.2s step-end infinite !important;
+        }
+        [data-plain="on"] .project-badge.production,
+        [data-plain="on"] .project-badge.open-source {
+            background: #ff0000 !important;
+            color: #ffff00 !important;
+            border-color: #ffff00 !important;
+        }
         [data-plain="on"] .project-stats {
             display: block !important;
-            border-top: none !important;
+            border-top: 1px dashed #888 !important;
             padding-top: 4px !important;
+            margin-top: 6px !important;
         }
         [data-plain="on"] .project-stat {
             display: inline !important;
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
+            font-family: 'Courier New', monospace !important;
+            font-size: 13px !important;
         }
         [data-plain="on"] .project-stat::after { content: ' | '; }
         [data-plain="on"] .project-stat:last-child::after { content: ''; }
         [data-plain="on"] .stat-value,
         [data-plain="on"] .stat-label {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: black !important;
+            font-family: 'Courier New', monospace !important;
+            font-size: 13px !important;
+            color: #cc0000 !important;
             display: inline !important;
+        }
+        [data-plain="on"][data-theme="dark"] .stat-value,
+        [data-plain="on"][data-theme="dark"] .stat-label {
+            color: #ffff00 !important;
         }
         [data-plain="on"] .stat-value { font-weight: bold !important; }
         [data-plain="on"] .stat-label::before { content: ' '; }
 
-        /* About cards as plain list */
+        /* About cards */
         [data-plain="on"] .about-wrapper {
             max-width: none !important;
         }
@@ -1601,76 +1766,103 @@
             gap: 0 !important;
         }
         [data-plain="on"] .about-card {
-            background: white !important;
-            border: none !important;
-            border-bottom: 1px solid #ccc !important;
+            background: transparent !important;
+            border: 1px dashed #000080 !important;
             border-radius: 0 !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            padding: 12px 0 !important;
+            padding: 10px !important;
+            margin-bottom: 8px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card {
+            border-color: #006600 !important;
         }
         [data-plain="on"] .about-card:hover {
             transform: none !important;
             box-shadow: none !important;
         }
         [data-plain="on"] .card-eyebrow {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 12px !important;
-            color: gray !important;
-            text-transform: none !important;
-            letter-spacing: normal !important;
+            font-family: 'Courier New', monospace !important;
+            font-size: 10px !important;
+            color: #666 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 2px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .card-eyebrow {
+            color: #009900 !important;
         }
         [data-plain="on"] .about-card h3 {
             font-family: 'Times New Roman', Times, serif !important;
             font-size: 16px !important;
-            color: black !important;
+            color: #800000 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card h3 {
+            color: #ff6600 !important;
         }
         [data-plain="on"] .about-card p {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: black !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-card p {
+            color: #00cc00 !important;
         }
         [data-plain="on"] .about-lede,
         [data-plain="on"] .about-outro {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: black !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: #000080 !important;
         }
-        [data-plain="on"] .about-outro strong { color: black !important; }
+        [data-plain="on"][data-theme="dark"] .about-lede,
+        [data-plain="on"][data-theme="dark"] .about-outro {
+            color: #00cc00 !important;
+        }
+        [data-plain="on"] .about-outro strong { color: #800000 !important; }
+        [data-plain="on"][data-theme="dark"] .about-outro strong { color: #ff6600 !important; }
 
-        /* Contact as plain links */
+        /* Contact */
         [data-plain="on"] .contact {
-            padding: 20px 0 !important;
+            padding: 10px 16px !important;
+            border-top: 3px double #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .contact {
+            border-top-color: #00ff00 !important;
         }
         [data-plain="on"] .contact-wrapper {
-            align-items: flex-start !important;
+            align-items: center !important;
         }
         [data-plain="on"] .contact-card {
-            background: white !important;
+            background: transparent !important;
             border: none !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
             padding: 0 !important;
-            text-align: left !important;
+            text-align: center !important;
         }
         [data-plain="on"] .contact-cta {
             display: block !important;
             gap: 0 !important;
         }
         [data-plain="on"] .btn {
-            display: inline !important;
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: blue !important;
-            text-decoration: underline !important;
-            background: none !important;
-            border: none !important;
-            padding: 0 !important;
-            margin-right: 16px !important;
+            display: inline-block !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: white !important;
+            background: #000080 !important;
+            border: 2px outset #8888ff !important;
+            padding: 4px 12px !important;
+            margin: 4px !important;
+            text-decoration: none !important;
             box-shadow: none !important;
+            border-radius: 0 !important;
             width: auto !important;
+        }
+        [data-plain="on"][data-theme="dark"] .btn {
+            background: #003300 !important;
+            border-color: #00ff00 !important;
+            color: #00ff00 !important;
         }
         [data-plain="on"] .btn span { display: none !important; }
         [data-plain="on"] .contact-links {
@@ -1679,9 +1871,9 @@
             gap: 0 !important;
         }
         [data-plain="on"] .contact-link {
-            font-family: 'Times New Roman', Times, serif !important;
-            font-size: 14px !important;
-            color: blue !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            font-size: 13px !important;
+            color: #0000ff !important;
             text-decoration: underline !important;
             background: none !important;
             border: none !important;
@@ -1690,26 +1882,36 @@
             display: inline !important;
             width: auto !important;
         }
+        [data-plain="on"][data-theme="dark"] .contact-link {
+            color: #00ffff !important;
+        }
 
-        /* Reveal animations: just show everything */
+        /* Show everything, kill animations */
         [data-plain="on"] .reveal {
             opacity: 1 !important;
             transform: none !important;
             animation: none !important;
         }
 
-        /* Mobile menu in plain mode */
+        /* Mobile menu */
         [data-plain="on"] .mobile-menu {
-            background: white !important;
+            background: #ffffcc !important;
             backdrop-filter: none !important;
+        }
+        [data-plain="on"][data-theme="dark"] .mobile-menu {
+            background: #000033 !important;
         }
         [data-plain="on"] .mobile-link,
         [data-plain="on"] .mobile-cta {
-            font-family: 'Times New Roman', Times, serif !important;
-            color: blue !important;
+            font-family: 'Comic Sans MS', cursive !important;
+            color: #0000ff !important;
             text-decoration: underline !important;
             background: none !important;
             border: none !important;
+        }
+        [data-plain="on"][data-theme="dark"] .mobile-link,
+        [data-plain="on"][data-theme="dark"] .mobile-cta {
+            color: #00ffff !important;
         }
 
         /* Scrollbar: default */
@@ -1912,7 +2114,7 @@
             <img class="hero-avatar" src="assets/dp.jpeg" alt="Cosmo Santoni" width="160" height="160">
             <div class="hero-badge">Imperial College London · PhD Researcher · Research Software Engineer</div>
             <h1 class="hero-title">
-                Machine Learning<br><span class="highlight-coral">Research</span>.
+                Machine Learning<br><span class="highlight-coral">Research</span>
             </h1>
             <p class="hero-subtitle">
                 I am a PhD researcher and software engineer at <span class="highlight-coral">Imperial College London</span>, specialising in foundational
@@ -2246,9 +2448,6 @@
 
         function setRetroMode(enabled) {
             if (enabled) {
-                // Mutual exclusion: turn off plain mode
-                document.documentElement.removeAttribute('data-plain');
-                localStorage.setItem('plain', 'off');
                 document.documentElement.setAttribute('data-retro', 'on');
                 localStorage.setItem('retro', 'on');
                 initCrtNoise();
@@ -2285,10 +2484,6 @@
 
         function setPlainMode(enabled) {
             if (enabled) {
-                // Mutual exclusion: turn off retro mode
-                if (document.documentElement.getAttribute('data-retro') === 'on') {
-                    setRetroMode(false);
-                }
                 document.documentElement.setAttribute('data-plain', 'on');
                 localStorage.setItem('plain', 'on');
             } else {
