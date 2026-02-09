@@ -1589,12 +1589,16 @@
             html[data-plain="on"] {
                 padding-left: 178px !important;
             }
-            [data-plain="on"] .plain-marquee,
             [data-plain="on"] .plain-banner,
             [data-plain="on"] section,
             [data-plain="on"] .plain-footer-90s {
                 margin-left: auto !important;
                 margin-right: auto !important;
+            }
+            /* Marquee breaks out of html padding to span full viewport */
+            [data-plain="on"] .plain-marquee {
+                margin-left: -178px !important;
+                width: 100vw !important;
             }
             /* Banner fills remaining content area */
             [data-plain="on"] .plain-banner {
@@ -1808,27 +1812,36 @@
             color: #00cc00 !important;
         }
 
-        /* Projects as plain text blocks with beveled borders */
+        /* Projects as plain text blocks — table-row style */
         [data-plain="on"] .featured-project-wrapper,
         [data-plain="on"] .secondary-project-wrapper {
             max-width: none !important;
             padding: 0 !important;
             margin: 0 !important;
+            border: 2px solid #000080 !important;
+            margin-bottom: 4px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .featured-project-wrapper,
+        [data-plain="on"][data-theme="dark"] .secondary-project-wrapper {
+            border-color: #006600 !important;
         }
         [data-plain="on"] .project-card,
         [data-plain="on"] .project-card.featured {
             display: block !important;
-            border: 2px inset #888 !important;
+            border: none !important;
             border-radius: 0 !important;
-            background: transparent !important;
+            background: #e8e8d0 !important;
             box-shadow: none !important;
-            padding: 12px !important;
-            margin-bottom: 12px !important;
+            padding: 6px 8px !important;
+            margin: 0 !important;
             min-height: 0 !important;
             color: #000080 !important;
             text-decoration: none !important;
             transition: none !important;
             cursor: default !important;
+        }
+        [data-plain="on"] .secondary-project-wrapper .project-card {
+            background: #ffffcc !important;
         }
         [data-plain="on"] .project-card:hover,
         [data-plain="on"] .project-card.featured:hover {
@@ -1837,8 +1850,11 @@
         }
         [data-plain="on"][data-theme="dark"] .project-card,
         [data-plain="on"][data-theme="dark"] .project-card.featured {
-            border-color: #006600 !important;
+            background: #0a1a0a !important;
             color: #00ff00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .secondary-project-wrapper .project-card {
+            background: #001a00 !important;
         }
         [data-plain="on"] .project-content {
             padding: 0 !important;
@@ -1870,9 +1886,9 @@
         [data-plain="on"] .project-badge {
             font-family: 'Courier New', monospace !important;
             font-size: 14px !important;
-            background: #ff0000 !important;
+            background: #000080 !important;
             color: #ffff00 !important;
-            border: 1px solid #ffff00 !important;
+            border: 1px solid #ff0000 !important;
             border-radius: 0 !important;
             padding: 1px 6px !important;
             display: inline !important;
@@ -1880,9 +1896,9 @@
         }
         [data-plain="on"] .project-badge.production,
         [data-plain="on"] .project-badge.open-source {
-            background: #ff0000 !important;
+            background: #000080 !important;
             color: #ffff00 !important;
-            border-color: #ffff00 !important;
+            border-color: #ff0000 !important;
         }
         [data-plain="on"] .project-stats {
             display: block !important;
@@ -1918,22 +1934,30 @@
         [data-plain="on"] .about-grid {
             display: block !important;
             gap: 0 !important;
+            border: 2px solid #000080 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-grid {
+            border-color: #006600 !important;
         }
         [data-plain="on"] .about-card {
             background: transparent !important;
-            border: 1px dashed #000080 !important;
+            border: none !important;
+            border-bottom: 1px solid #000080 !important;
             border-radius: 0 !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
             -webkit-backdrop-filter: none !important;
-            padding: 10px !important;
-            margin-bottom: 8px !important;
+            padding: 6px 8px !important;
+            margin: 0 !important;
             display: block !important;
             height: auto !important;
             transition: none !important;
         }
+        [data-plain="on"] .about-card:last-child {
+            border-bottom: none !important;
+        }
         [data-plain="on"][data-theme="dark"] .about-card {
-            border-color: #006600 !important;
+            border-bottom-color: #006600 !important;
         }
         [data-plain="on"] .about-card:hover {
             transform: none !important;
@@ -2323,16 +2347,16 @@
 
         /* Striped about cards like old HTML tables */
         [data-plain="on"] .about-card:nth-child(odd) {
-            background: rgba(0, 0, 128, 0.06) !important;
+            background: #e8e8d0 !important;
         }
         [data-plain="on"] .about-card:nth-child(even) {
-            background: rgba(128, 0, 0, 0.06) !important;
+            background: #ffffcc !important;
         }
         [data-plain="on"][data-theme="dark"] .about-card:nth-child(odd) {
-            background: rgba(0, 255, 0, 0.05) !important;
+            background: #0a1a0a !important;
         }
         [data-plain="on"][data-theme="dark"] .about-card:nth-child(even) {
-            background: rgba(0, 255, 255, 0.05) !important;
+            background: #000033 !important;
         }
 
         /* "NEW!" blinking marker on featured project */
@@ -2380,25 +2404,29 @@
             background: #006600 !important;
         }
 
-        /* Project cards get drop shadows and thicker borders */
-        [data-plain="on"] .project-card,
-        [data-plain="on"] .project-card.featured {
-            border: 3px ridge #808080 !important;
-            box-shadow: 5px 5px 0 #888 !important;
+        /* Project cards — table-row borders handled above */
+
+        /* Google brand colors preserved in 1997 mode */
+        [data-plain="on"] .google-text .g1,
+        [data-plain="on"] .google-text .g2 {
+            color: #4285F4 !important;
+            -webkit-text-fill-color: #4285F4 !important;
         }
-        [data-plain="on"][data-theme="dark"] .project-card,
-        [data-plain="on"][data-theme="dark"] .project-card.featured {
-            border: 3px ridge #006600 !important;
-            box-shadow: 5px 5px 0 #003300 !important;
+        [data-plain="on"] .google-text .o1,
+        [data-plain="on"] .google-text .e {
+            color: #EA4335 !important;
+            -webkit-text-fill-color: #EA4335 !important;
+        }
+        [data-plain="on"] .google-text .o2 {
+            color: #FBBC04 !important;
+            -webkit-text-fill-color: #FBBC04 !important;
+        }
+        [data-plain="on"] .google-text .l {
+            color: #34A853 !important;
+            -webkit-text-fill-color: #34A853 !important;
         }
 
-        /* About cards ridge border */
-        [data-plain="on"] .about-card {
-            border: 2px ridge #808080 !important;
-        }
-        [data-plain="on"][data-theme="dark"] .about-card {
-            border: 2px ridge #006600 !important;
-        }
+        /* About cards — table-row borders handled above */
 
         /* 90s-only elements (hidden by default, shown in plain mode) */
         .plain-marquee,
@@ -2861,7 +2889,7 @@
                 <div class="project-content">
                     <div class="badge-group">
                         <div class="project-badge open-source">OPEN SOURCE</div>
-                        <div class="project-badge production">MERGED INTO GOOGLE</div>
+                        <div class="project-badge production">MERGED INTO <span class="google-text"><span class="g1">G</span><span class="o1">O</span><span class="o2">O</span><span class="g2">G</span><span class="l">L</span><span class="e">E</span></span></div>
                     </div>
                     <h3 class="project-title">mamba2-jax</h3>
                     <p class="project-description">
@@ -2982,7 +3010,7 @@
                 <h2 class="section-title">
                     Let's <span class="highlight-coral">Connect</span>
                 </h2>
-                <p class="section-subtitle">Always open to interesting problems.</p>
+                <p class="section-subtitle">Always open to interesting problems and people.</p>
             </div>
             <div class="contact-card">
 
