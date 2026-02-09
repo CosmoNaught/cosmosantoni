@@ -2721,6 +2721,9 @@
             overflow: hidden !important;
             background: #c0c0c0 !important;
         }
+        [data-plain="on"][data-theme="dark"] .logo-filler.logo-item {
+            background: #c0c0c0 !important;
+        }
         [data-plain="on"] .logo-filler img {
             width: 100% !important;
             height: 100% !important;
@@ -2857,7 +2860,30 @@
                 width: 70px !important;
                 height: 70px !important;
             }
-            [data-plain="on"] .nav-brand { font-size: 18px !important; }
+            [data-plain="on"] .nav-brand {
+                font-size: 14px !important;
+                color: #ffff00 !important;
+                -webkit-text-fill-color: #ffff00 !important;
+                text-shadow: 1px 1px 0 #ff0000, 2px 2px 0 #880000 !important;
+                text-align: center !important;
+            }
+            [data-plain="on"][data-theme="dark"] .nav-brand {
+                -webkit-text-fill-color: #00ff00 !important;
+                text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00 !important;
+            }
+            [data-plain="on"] .nav-brand::after {
+                content: '~*~*~*~*~*~*~' !important;
+                display: block !important;
+                font-size: 10px !important;
+                color: #ff00ff !important;
+                -webkit-text-fill-color: #ff00ff !important;
+                margin-top: 4px !important;
+                animation: rainbow90s 3s linear infinite !important;
+            }
+            [data-plain="on"][data-theme="dark"] .nav-brand::after {
+                color: #00ff00 !important;
+                -webkit-text-fill-color: #00ff00 !important;
+            }
             [data-plain="on"] .nav-link,
             [data-plain="on"] .nav-cta { font-size: 14px !important; }
             [data-plain="on"] .hero-title { font-size: 28px !important; }
