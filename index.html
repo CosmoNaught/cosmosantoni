@@ -279,6 +279,7 @@
             font-weight: 500;
             transition: all 0.3s var(--ease-apple);
         }
+        .nav-friends-link { display: none; }
 
         .nav-cta:hover {
             background: var(--accent-coral);
@@ -1361,7 +1362,6 @@
 
         /* Kill all decorative layers */
         [data-plain="on"] #fluid-bg,
-        [data-plain="on"] .collab-banner,
         [data-plain="on"] .project-visual,
         [data-plain="on"] .hero-badge,
         [data-plain="on"] .about-card::before,
@@ -1498,8 +1498,35 @@
             }
             [data-plain="on"] .nav-link:nth-child(1)::before { content: '\2605  ' !important; color: #ff0000 !important; }
             [data-plain="on"] .nav-link:nth-child(2)::before { content: '\25CF  ' !important; color: #00ff00 !important; }
-            [data-plain="on"] .nav-link:nth-child(3)::before { content: '\2666  ' !important; color: #00ffff !important; }
+            [data-plain="on"] .nav-link:nth-child(4)::before { content: '\2666  ' !important; color: #00ffff !important; }
             [data-plain="on"] .nav-cta::before { content: '\25BC  ' !important; color: #ff6600 !important; }
+            /* Friends sidebar section — only visible in 1997 mode */
+            [data-plain="on"] .nav-friends-link {
+                display: block !important;
+            }
+            [data-plain="on"] .nav-friends-link::before {
+                content: '\2665  ' !important;
+                color: #ff00ff !important;
+            }
+            [data-plain="on"] .nav-friends-link::after {
+                content: '\A Partners &\A Collaborators' !important;
+                white-space: pre-wrap !important;
+                display: block !important;
+                font-size: 9px !important;
+                color: #00ffff !important;
+                -webkit-text-fill-color: #00ffff !important;
+                margin-top: 2px !important;
+                font-weight: normal !important;
+            }
+            [data-plain="on"][data-theme="dark"] .nav-friends-link {
+            }
+            [data-plain="on"][data-theme="dark"] .nav-friends-link::before {
+                color: #00ff00 !important;
+            }
+            [data-plain="on"][data-theme="dark"] .nav-friends-link::after {
+                color: #00ff00 !important;
+                -webkit-text-fill-color: #00ff00 !important;
+            }
             [data-plain="on"][data-theme="dark"] .nav-link,
             [data-plain="on"][data-theme="dark"] .nav-cta {
                 color: #00ff00 !important;
@@ -2573,6 +2600,223 @@
             font-weight: bold !important;
         }
 
+        /* Hide lost.gif fillers in normal mode */
+        .logo-filler { display: none; }
+
+        /* ★ 1997 mode: GeoCities "Web Ring" paginated logo grid ★ */
+        [data-plain="on"] .collab-banner {
+            display: block !important;
+            max-width: 760px !important;
+            margin: 20px auto !important;
+            padding: 0 !important;
+            background: transparent !important;
+            overflow: visible !important;
+            opacity: 1 !important;
+            animation: none !important;
+        }
+        /* 1997 Friends section header — injected by JS */
+        .friends-header-97 {
+            display: none;
+        }
+        [data-plain="on"] .friends-header-97 {
+            display: block !important;
+            text-align: center !important;
+            max-width: 760px !important;
+            margin: 0 auto 8px !important;
+            border-bottom: 2px solid #000080 !important;
+            padding-bottom: 4px !important;
+        }
+        [data-plain="on"] .friends-header-97 .section-label {
+            margin-bottom: 4px !important;
+        }
+        [data-plain="on"][data-theme="dark"] .friends-header-97 {
+            border-bottom-color: #00ff00 !important;
+        }
+        [data-plain="on"] .collab-heading {
+            display: block !important;
+            font-family: 'Comic Sans MS', cursive, sans-serif !important;
+            font-size: 18px !important;
+            font-weight: bold !important;
+            color: #ffff00 !important;
+            text-align: center !important;
+            padding: 8px 12px !important;
+            background: #000080 !important;
+            border: 3px outset #c0c0c0 !important;
+            text-shadow: 2px 2px 0 #000 !important;
+            margin-bottom: 0 !important;
+            letter-spacing: 0 !important;
+            text-transform: none !important;
+        }
+        [data-plain="on"] .collab-heading::before {
+            content: '\2605  ~*~ ' !important;
+            color: #ff00ff !important;
+        }
+        [data-plain="on"] .collab-heading::after {
+            content: ' ~*~ \2605' !important;
+            color: #ff00ff !important;
+        }
+        [data-plain="on"] .logo-marquee {
+            overflow: visible !important;
+            mask-image: none !important;
+            -webkit-mask-image: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+        }
+        [data-plain="on"] .logo-track {
+            display: grid !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 0 !important;
+            animation: none !important;
+            transform: none !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+            border: 3px inset #c0c0c0 !important;
+            background: #c0c0c0 !important;
+        }
+        /* Hide duplicates and items outside current page */
+        [data-plain="on"] .logo-item[aria-hidden="true"],
+        [data-plain="on"] .logo-item.wr-hidden {
+            display: none !important;
+        }
+        [data-plain="on"] .logo-item {
+            width: auto !important;
+            height: auto !important;
+            min-width: 0 !important;
+            border-radius: 0 !important;
+            border: 2px outset #dfdfdf !important;
+            padding: 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            aspect-ratio: 1 !important;
+            flex: auto !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        [data-plain="on"] .logo-item:nth-child(odd) {
+            background: #c0c0c0 !important;
+        }
+        [data-plain="on"] .logo-item:nth-child(even) {
+            background: #d4d0c8 !important;
+        }
+        [data-plain="on"] .logo-item:nth-child(3n) {
+            background: #b8cce0 !important;
+        }
+        [data-plain="on"] .logo-item:nth-child(4n+1) {
+            background: #e0d4c8 !important;
+        }
+        [data-plain="on"] .logo-item img {
+            width: 80% !important;
+            height: 80% !important;
+            object-fit: contain !important;
+            transform: none !important;
+            filter: none !important;
+        }
+        [data-plain="on"] .logo-filler {
+            display: flex !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            background: #c0c0c0 !important;
+        }
+        [data-plain="on"] .logo-filler img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            mix-blend-mode: multiply !important;
+        }
+        [data-plain="on"] .logo-link {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        [data-plain="on"] .logo-link:focus-visible {
+            outline: 2px dotted #000 !important;
+            border-radius: 0 !important;
+        }
+        /* Web Ring nav bar (real buttons) */
+        .webring-nav {
+            display: none;
+        }
+        [data-plain="on"] .webring-nav {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 0 !important;
+            background: #c0c0c0 !important;
+            border: 2px outset #dfdfdf !important;
+            padding: 4px 0 !important;
+        }
+        [data-plain="on"] .webring-btn {
+            font-family: 'MS Sans Serif', 'Arial', sans-serif !important;
+            font-size: 11px !important;
+            font-weight: bold !important;
+            color: #000080 !important;
+            background: #c0c0c0 !important;
+            border: 2px outset #dfdfdf !important;
+            padding: 3px 12px !important;
+            cursor: pointer !important;
+        }
+        [data-plain="on"] .webring-btn:hover {
+            background: #d4d0c8 !important;
+        }
+        [data-plain="on"] .webring-btn:active {
+            border-style: inset !important;
+        }
+        [data-plain="on"] .webring-label {
+            font-family: 'MS Sans Serif', 'Arial', sans-serif !important;
+            font-size: 11px !important;
+            font-weight: bold !important;
+            color: #000080 !important;
+            padding: 0 12px !important;
+        }
+        /* Dark mode Web Ring */
+        [data-plain="on"][data-theme="dark"] .collab-heading {
+            background: #003300 !important;
+            color: #00ff00 !important;
+            border: 3px outset #006600 !important;
+            text-shadow: 0 0 8px #00ff00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .collab-heading::before,
+        [data-plain="on"][data-theme="dark"] .collab-heading::after {
+            color: #00ff00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-track {
+            border-color: #006600 !important;
+            background: #001a00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-item {
+            border: 2px outset #006600 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-item:nth-child(odd) {
+            background: #001a00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-item:nth-child(even) {
+            background: #002200 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-item:nth-child(3n) {
+            background: #002a00 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .logo-item:nth-child(4n+1) {
+            background: #001100 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .webring-nav {
+            background: #003300 !important;
+            border-color: #006600 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .webring-btn {
+            color: #00ff00 !important;
+            background: #003300 !important;
+            border: 2px outset #006600 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .webring-btn:hover {
+            background: #004400 !important;
+        }
+        [data-plain="on"][data-theme="dark"] .webring-label {
+            color: #00ff00 !important;
+        }
+
         /* Win95 scrollbar */
         [data-plain="on"] ::-webkit-scrollbar {
             display: block !important;
@@ -2601,7 +2845,18 @@
         /* --- 1997 mode: revert font size increase on mobile --- */
         @media (max-width: 768px) {
             [data-plain="on"] .plain-tony,
-            [data-plain="on"] .plain-coop { display: none !important; }
+            [data-plain="on"] .plain-coop {
+                display: block !important;
+                position: absolute !important;
+                top: 0 !important;
+            }
+            [data-plain="on"] .plain-tony { left: 0 !important; }
+            [data-plain="on"] .plain-coop { right: 0 !important; }
+            [data-plain="on"] .plain-tony img,
+            [data-plain="on"] .plain-coop img {
+                width: 70px !important;
+                height: 70px !important;
+            }
             [data-plain="on"] .nav-brand { font-size: 18px !important; }
             [data-plain="on"] .nav-link,
             [data-plain="on"] .nav-cta { font-size: 14px !important; }
@@ -2629,6 +2884,8 @@
             [data-plain="on"] .project-card.featured .project-title::after { font-size: 12px !important; }
             [data-plain="on"] .plain-marquee { font-size: 14px !important; }
             [data-plain="on"] .plain-footer-90s { font-size: 11px !important; }
+            [data-plain="on"] .logo-track { grid-template-columns: repeat(3, 1fr) !important; }
+            [data-plain="on"] .collab-heading { font-size: 14px !important; }
         }
 
         /* --- Reduced motion --- */
@@ -2768,6 +3025,7 @@
           <div class="nav-links">
             <a href="#projects" class="nav-link">Research</a>
             <a href="#about" class="nav-link">About</a>
+            <a href="#webring" class="nav-link nav-friends-link">Friends</a>
             <a href="#contact" class="nav-link">Contact</a>
             <a href="assets/Cosmo_Santoni_CV.pdf" download class="nav-cta">Download CV</a>
           </div>
@@ -2810,6 +3068,7 @@
         <div class="mobile-menu" id="mobileMenu" role="menu">
           <a href="#projects" class="mobile-link" role="menuitem">Research</a>
           <a href="#about" class="mobile-link" role="menuitem">About</a>
+          <a href="#webring" class="mobile-link" role="menuitem">Friends</a>
           <a href="#contact" class="mobile-link" role="menuitem">Contact</a>
           <a href="assets/Cosmo_Santoni_CV.pdf" download class="mobile-cta" role="menuitem">Download CV</a>
         </div>
@@ -2850,8 +3109,12 @@
                 </a>
             </div>
 
-            <!-- Collaborators banner -->
-            <div class="collab-banner" aria-label="Collaborated with">
+            <!-- Partners & Collaborators -->
+            <div class="friends-header-97">
+                <div class="section-label">Friends</div>
+                <h2 class="section-title">Partners & <span class="highlight-coral">Collaborators</span></h2>
+            </div>
+            <div class="collab-banner" id="webring" aria-label="Collaborated with">
                 <div class="collab-heading">Partners & Collaborators</div>
                 <div class="logo-marquee" role="region" aria-roledescription="scrolling logos">
                     <ul class="logo-track">
@@ -2868,6 +3131,11 @@
                         <li class="logo-item square tight"><a class="logo-link" href="https://www.gov.uk/government/organisations/uk-health-security-agency" target="_blank" rel="noopener"><img src="assets/logos/ukhsa.jpg" alt="UK Health Security Agency (UKHSA)" loading="lazy" decoding="async"></a></li>
                         <li class="logo-item square tight"><a class="logo-link" href="https://www.parkinsons.org.uk" target="_blank" rel="noopener"><img src="assets/logos/puk.png" alt="Parkinson's UK" loading="lazy" decoding="async"></a></li>
                         <li class="logo-item square tight"><a class="logo-link" href="https://www.ensat.fr/fr/index.html" target="_blank" rel="noopener"><img src="assets/logos/inp.png" alt="Toulouse INP" loading="lazy" decoding="async"></a></li>
+                        <li class="logo-item square tight logo-filler"><img src="assets/lost.gif" alt="" loading="lazy" decoding="async"></li>
+                        <li class="logo-item square tight logo-filler"><img src="assets/lost.gif" alt="" loading="lazy" decoding="async"></li>
+                        <li class="logo-item square tight logo-filler"><img src="assets/lost.gif" alt="" loading="lazy" decoding="async"></li>
+                        <li class="logo-item square tight logo-filler"><img src="assets/lost.gif" alt="" loading="lazy" decoding="async"></li>
+                        <li class="logo-item square tight logo-filler"><img src="assets/lost.gif" alt="" loading="lazy" decoding="async"></li>
 
                         <!-- Duplicate for seamless loop -->
                         <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.imperial.ac.uk" target="_blank" rel="noopener" tabindex="-1"><img src="assets/logos/icl.jpg" alt="" loading="lazy" decoding="async"></a></li>
@@ -2884,6 +3152,11 @@
                         <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.parkinsons.org.uk" target="_blank" rel="noopener" tabindex="-1"><img src="assets/logos/puk.png" alt="" loading="lazy" decoding="async"></a></li>
                         <li class="logo-item square tight" aria-hidden="true"><a class="logo-link" href="https://www.ensat.fr/fr/index.html" target="_blank" rel="noopener" tabindex="-1"><img src="assets/logos/inp.png" alt="" loading="lazy" decoding="async"></a></li>
                     </ul>
+                    <div class="webring-nav">
+                        <button class="webring-btn" id="wrPrev">&larr; Previous</button>
+                        <span class="webring-label">&starf; Web Ring &starf;</span>
+                        <button class="webring-btn" id="wrNext">Next &rarr;</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3111,18 +3384,32 @@
         const plainToggle = document.getElementById('plainToggle');
 
         function setPlainMode(enabled) {
+            var collabBanner = document.getElementById('webring');
+            var friendsHeader = document.querySelector('.friends-header-97');
+            var contactSection = document.getElementById('contact');
+            var heroContent = document.querySelector('.hero-content');
             if (enabled) {
                 document.documentElement.setAttribute('data-plain', 'on');
                 localStorage.setItem('plain', 'on');
                 // Switch to light mode when entering 1997 mode
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
+                // Move friends header + collab banner before contact section
+                if (collabBanner && contactSection) {
+                    contactSection.parentNode.insertBefore(friendsHeader, contactSection);
+                    contactSection.parentNode.insertBefore(collabBanner, contactSection);
+                }
             } else {
                 document.documentElement.removeAttribute('data-plain');
                 localStorage.setItem('plain', 'off');
                 // Switch to dark mode when exiting 1997 mode
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
+                // Move friends header + collab banner back into hero
+                if (collabBanner && heroContent) {
+                    heroContent.appendChild(friendsHeader);
+                    heroContent.appendChild(collabBanner);
+                }
             }
             equalizeContact();
         }
@@ -3133,6 +3420,42 @@
                 setPlainMode(!isPlain);
             });
         }
+
+        // --- Web Ring pagination (1997 mode) ---
+        (function() {
+            var page = 0;
+            var allItems = document.querySelectorAll('.logo-track .logo-item:not([aria-hidden="true"])');
+            var prevBtn = document.getElementById('wrPrev');
+            var nextBtn = document.getElementById('wrNext');
+
+            function isMobile() { return window.innerWidth <= 768; }
+            function perPage() { return isMobile() ? 6 : 8; }
+            // Desktop: 16 items (2×8), Mobile: 18 items (3×6)
+            function itemCount() { return isMobile() ? 18 : 16; }
+
+            function showPage(p) {
+                var pp = perPage();
+                var count = Math.min(allItems.length, itemCount());
+                var totalPages = Math.ceil(count / pp);
+                page = ((p % totalPages) + totalPages) % totalPages;
+                var start = page * pp;
+                var end = start + pp;
+                for (var i = 0; i < allItems.length; i++) {
+                    if (i < count && i >= start && i < end) {
+                        allItems[i].classList.remove('wr-hidden');
+                    } else {
+                        allItems[i].classList.add('wr-hidden');
+                    }
+                }
+            }
+
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function() { showPage(page - 1); });
+                nextBtn.addEventListener('click', function() { showPage(page + 1); });
+                window.addEventListener('resize', function() { showPage(page); });
+                showPage(0);
+            }
+        })();
 
         // --- Mobile menu toggle ---
         const navToggle = document.getElementById('navToggle');
@@ -3235,6 +3558,16 @@
             equalizeContact();
             if (document.fonts && document.fonts.ready) {
                 document.fonts.ready.then(equalizeContact);
+            }
+            // Move friends header + collab banner on load if 1997 mode is active
+            if (document.documentElement.getAttribute('data-plain') === 'on') {
+                var cb = document.getElementById('webring');
+                var fh = document.querySelector('.friends-header-97');
+                var cs = document.getElementById('contact');
+                if (cb && fh && cs) {
+                    cs.parentNode.insertBefore(fh, cs);
+                    cs.parentNode.insertBefore(cb, cs);
+                }
             }
         });
         window.addEventListener('resize', equalizeContact);
