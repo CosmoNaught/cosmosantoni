@@ -1811,6 +1811,13 @@
             min-height: 0 !important;
             color: #000080 !important;
             text-decoration: none !important;
+            transition: none !important;
+            cursor: default !important;
+        }
+        [data-plain="on"] .project-card:hover,
+        [data-plain="on"] .project-card.featured:hover {
+            transform: none !important;
+            box-shadow: none !important;
         }
         [data-plain="on"][data-theme="dark"] .project-card,
         [data-plain="on"][data-theme="dark"] .project-card.featured {
@@ -1902,6 +1909,9 @@
             -webkit-backdrop-filter: none !important;
             padding: 10px !important;
             margin-bottom: 8px !important;
+            display: block !important;
+            height: auto !important;
+            transition: none !important;
         }
         [data-plain="on"][data-theme="dark"] .about-card {
             border-color: #006600 !important;
@@ -1945,6 +1955,13 @@
         [data-plain="on"][data-theme="dark"] .about-lede,
         [data-plain="on"][data-theme="dark"] .about-outro {
             color: #00cc00 !important;
+        }
+        [data-plain="on"] .about-outro {
+            border-top: 2px dashed #000080 !important;
+            text-align: left !important;
+        }
+        [data-plain="on"][data-theme="dark"] .about-outro {
+            border-top-color: #006600 !important;
         }
         [data-plain="on"] .about-outro strong { color: #800000 !important; }
         [data-plain="on"][data-theme="dark"] .about-outro strong { color: #ff6600 !important; }
@@ -2101,30 +2118,36 @@
             text-shadow: 0 0 8px currentColor, 0 0 16px currentColor !important;
         }
 
-        /* Hero avatar: pixelated, thick border, drop shadow */
+        /* Hero avatar: pixelated, thick border, drop shadow, green zigzag frame */
         [data-plain="on"] .hero-avatar {
-            border: 4px solid #000080 !important;
+            border: 4px solid #008800 !important;
             border-radius: 0 !important;
             image-rendering: pixelated !important;
             box-shadow: 5px 5px 0 #888 !important;
             width: 80px !important;
             height: 80px !important;
+            padding: 6px !important;
+            background: conic-gradient(from 45deg, #008800 25%, #ccff66 0% 50%, #008800 0% 75%, #ccff66 0%) 0 0 / 8px 8px !important;
         }
         [data-plain="on"][data-theme="dark"] .hero-avatar {
             border-color: #00ff00 !important;
             box-shadow: 5px 5px 0 #003300, 0 0 15px #00ff00 !important;
+            background: conic-gradient(from 45deg, #006600 25%, #1a3300 0% 50%, #006600 0% 75%, #1a3300 0%) 0 0 / 8px 8px !important;
         }
         /* Desktop: Make headshot same size as pets, responsive */
         @media (min-width: 769px) {
             [data-plain="on"] .hero-pets .hero-avatar {
                 width: min(280px, 22vw) !important;
                 height: min(280px, 22vw) !important;
-                border: 6px solid #000080 !important;
+                border: 6px solid #008800 !important;
                 box-shadow: 8px 8px 0 #888 !important;
+                padding: 12px !important;
+                background: conic-gradient(from 45deg, #008800 25%, #ccff66 0% 50%, #008800 0% 75%, #ccff66 0%) 0 0 / 12px 12px !important;
             }
             [data-plain="on"][data-theme="dark"] .hero-pets .hero-avatar {
                 border-color: #00ff00 !important;
                 box-shadow: 8px 8px 0 #003300, 0 0 15px #00ff00 !important;
+                background: conic-gradient(from 45deg, #006600 25%, #1a3300 0% 50%, #006600 0% 75%, #1a3300 0%) 0 0 / 12px 12px !important;
             }
         }
 
@@ -2146,12 +2169,27 @@
         @media (min-width: 769px) {
             [data-plain="on"] .hero-pets {
                 display: flex !important;
+                flex-wrap: wrap !important;
                 justify-content: space-evenly !important;
                 align-items: center !important;
                 width: 100% !important;
                 max-width: none !important;
                 margin: 0 0 20px 0 !important;
                 padding: 20px 0 !important;
+            }
+            [data-plain="on"] .hero-pets::before {
+                content: '\2605 Cosmo Santoni \2605' !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-family: 'Comic Sans MS', sans-serif !important;
+                font-size: 22px !important;
+                font-weight: bold !important;
+                color: #800000 !important;
+                margin-bottom: 8px !important;
+            }
+            [data-plain="on"][data-theme="dark"] .hero-pets::before {
+                color: #00ff00 !important;
+                text-shadow: 0 0 8px #00ff00 !important;
             }
             [data-plain="on"] .hero-pet-container {
                 flex: 0 0 auto !important;
@@ -2175,10 +2213,24 @@
         @media (max-width: 768px) {
             [data-plain="on"] .hero-pets {
                 display: flex !important;
+                flex-wrap: wrap !important;
                 justify-content: center !important;
                 align-items: center !important;
                 gap: 20px !important;
                 margin-bottom: 20px !important;
+            }
+            [data-plain="on"] .hero-pets::before {
+                content: '\2605 Cosmo Santoni \2605' !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-family: 'Comic Sans MS', sans-serif !important;
+                font-size: 16px !important;
+                font-weight: bold !important;
+                color: #800000 !important;
+            }
+            [data-plain="on"][data-theme="dark"] .hero-pets::before {
+                color: #00ff00 !important;
+                text-shadow: 0 0 8px #00ff00 !important;
             }
             [data-plain="on"] .pet-image {
                 width: 70px !important;
@@ -2323,12 +2375,15 @@
             width: 100% !important;
             max-width: 700px !important;
             height: auto !important;
-            border: 3px ridge #808080 !important;
+            border: 4px solid #cc0000 !important;
             box-shadow: 5px 5px 0 #888 !important;
+            padding: 10px !important;
+            background: conic-gradient(from 45deg, #cc0000 25%, #ffcc66 0% 50%, #cc0000 0% 75%, #ffcc66 0%) 0 0 / 10px 10px !important;
         }
         [data-plain="on"][data-theme="dark"] .plain-banner img {
-            border: 3px ridge #006600 !important;
-            box-shadow: 5px 5px 0 #003300 !important;
+            border: 4px solid #ff3333 !important;
+            box-shadow: 5px 5px 0 #330000 !important;
+            background: conic-gradient(from 45deg, #880000 25%, #331100 0% 50%, #880000 0% 75%, #331100 0%) 0 0 / 10px 10px !important;
         }
         [data-plain="on"][data-theme="dark"] .plain-marquee {
             background: #330000 !important;
@@ -3036,7 +3091,7 @@
     <div class="plain-footer-90s" aria-hidden="true">
         <hr style="border:none;border-top:2px ridge #808080;margin:8px 0">
         <p class="plain-construction">&#128679; UNDER CONSTRUCTION &#128679;</p>
-        <p>Best viewed in <b>Netscape Navigator 4.0</b> </p>
+        <p>Best viewed in <b>Netscape Navigator 3.0</b> </p>
         <p>&#9993; <b>Email:</b> santonicosmo@gmail.com</p>
         <hr style="border:none;border-top:1px dashed #808080;margin:8px 0">
         <p>&copy; 1997-2026 Cosmo Santoni. All rights reserved.<br>No part of this website may be reproduced without express written permission.</p>
