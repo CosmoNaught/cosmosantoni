@@ -1340,7 +1340,7 @@
             cursor: crosshair !important;
             -webkit-font-smoothing: auto !important;
             -moz-osx-font-smoothing: auto !important;
-            overflow-x: auto !important;
+            overflow-x: hidden !important;
         }
 
         /* --- DARK plain text --- */
@@ -1397,8 +1397,7 @@
                 padding: 0 !important;
                 animation: none !important;
                 opacity: 1 !important;
-                overflow-y: auto !important;
-                overflow-x: hidden !important;
+                overflow: hidden !important;
                 z-index: 1000 !important;
                 font-family: 'Comic Sans MS', cursive, sans-serif !important;
             }
@@ -1583,12 +1582,16 @@
                 color: #006600 !important;
             }
             [data-plain="on"] .plain-matrix,
-            [data-plain="on"] .plain-xfiles {
+            [data-plain="on"] .plain-xfiles,
+            [data-plain="on"] .plain-homer {
                 display: block !important;
                 width: 100% !important;
                 padding: 4px !important;
                 box-sizing: border-box !important;
-                margin-top: 8px !important;
+                margin-top: 4px !important;
+                flex-shrink: 1 !important;
+                min-height: 0 !important;
+                object-fit: contain !important;
             }
             [data-plain="on"] .nav-toggle {
                 display: none !important;
@@ -2444,7 +2447,8 @@
         .plain-coop,
         .plain-email,
         .plain-matrix,
-        .plain-xfiles {
+        .plain-xfiles,
+        .plain-homer {
             display: none;
             pointer-events: none;
         }
@@ -2788,6 +2792,7 @@
 
           <img class="plain-matrix" src="assets/matrix.gif" alt="Matrix">
           <img class="plain-xfiles" src="assets/x-files.gif" alt="X-Files">
+          <img class="plain-homer" src="assets/homer.gif" alt="Homer">
 
           <button
             class="nav-toggle"
