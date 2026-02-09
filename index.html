@@ -1582,6 +1582,14 @@
             [data-plain="on"][data-theme="dark"] nav::after {
                 color: #006600 !important;
             }
+            [data-plain="on"] .plain-matrix,
+            [data-plain="on"] .plain-xfiles {
+                display: block !important;
+                width: 100% !important;
+                padding: 4px !important;
+                box-sizing: border-box !important;
+                margin-top: 8px !important;
+            }
             [data-plain="on"] .nav-toggle {
                 display: none !important;
             }
@@ -2431,13 +2439,19 @@
         /* 90s-only elements (hidden by default, shown in plain mode) */
         .plain-marquee,
         .plain-banner,
-        .plain-footer-90s {
+        .plain-footer-90s,
+        .plain-tony,
+        .plain-coop,
+        .plain-email,
+        .plain-matrix,
+        .plain-xfiles {
             display: none;
             pointer-events: none;
         }
         [data-plain="on"] .plain-marquee,
         [data-plain="on"] .plain-banner,
-        [data-plain="on"] .plain-footer-90s {
+        [data-plain="on"] .plain-footer-90s,
+        [data-plain="on"] .plain-tony {
             pointer-events: auto;
         }
         [data-plain="on"] .plain-marquee {
@@ -2486,7 +2500,36 @@
         [data-plain="on"] .plain-marquee-inner {
             display: inline-block !important;
             white-space: nowrap !important;
-            animation: marquee90s 15s linear infinite !important;
+            animation: marquee90s 25s linear infinite !important;
+        }
+        [data-plain="on"] .contact {
+            position: relative !important;
+        }
+        [data-plain="on"] .plain-tony {
+            display: block !important;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+        }
+        [data-plain="on"] .plain-tony img,
+        [data-plain="on"] .plain-coop img {
+            width: 120px !important;
+            height: 120px !important;
+            object-fit: cover !important;
+            border: 2px solid #000080 !important;
+        }
+        [data-plain="on"] .plain-coop {
+            display: block !important;
+            position: absolute !important;
+            right: 0 !important;
+            top: 0 !important;
+        }
+        [data-plain="on"] .plain-email {
+            display: inline-block !important;
+            vertical-align: middle !important;
+            width: 40px !important;
+            height: auto !important;
+            margin-left: 6px !important;
         }
         [data-plain="on"] .plain-footer-90s {
             display: block !important;
@@ -2552,6 +2595,8 @@
 
         /* --- 1997 mode: revert font size increase on mobile --- */
         @media (max-width: 768px) {
+            [data-plain="on"] .plain-tony,
+            [data-plain="on"] .plain-coop { display: none !important; }
             [data-plain="on"] .nav-brand { font-size: 18px !important; }
             [data-plain="on"] .nav-link,
             [data-plain="on"] .nav-cta { font-size: 14px !important; }
@@ -2602,7 +2647,7 @@
     <!-- 90s plain text mode elements (hidden by default) -->
     <div class="plain-marquee" aria-hidden="true">
         <div class="plain-marquee-inner">
-            <span class="marquee-text">&#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="marquee-text">&#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="marquee-text">&#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733; Days until ICML: <span class="countdown-icml"></span> &#9733; Days until NeurIPS: <span class="countdown-neurips"></span> &#9733; Days until Stanley Cup Playoffs: <span class="countdown-stanley"></span> &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="marquee-text">&#9733; &#9733; &#9733; Welcome to Cosmo Santoni's Homepage!!! &#9733; &#9733; &#9733; Last Updated: February 2026 &#9733; &#9733; &#9733; Days until ICML: <span class="countdown-icml"></span> &#9733; Days until NeurIPS: <span class="countdown-neurips"></span> &#9733; Days until Stanley Cup Playoffs: <span class="countdown-stanley"></span> &#9733; &#9733; &#9733; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         </div>
     </div>
 
@@ -2740,6 +2785,9 @@
               <line x1="8" y1="17" x2="13" y2="17"/>
             </svg>
           </button>
+
+          <img class="plain-matrix" src="assets/matrix.gif" alt="Matrix">
+          <img class="plain-xfiles" src="assets/x-files.gif" alt="X-Files">
 
           <button
             class="nav-toggle"
@@ -3004,12 +3052,18 @@
 
     <!-- Contact -->
     <section class="contact reveal" id="contact">
+        <div class="plain-tony" aria-hidden="true">
+            <img src="assets/tony.gif" alt="Tony">
+        </div>
+        <div class="plain-coop" aria-hidden="true">
+            <img src="assets/coop.gif" alt="Coop">
+        </div>
         <div class="contact-wrapper">
             <div class="section-header" style="margin-bottom:32px">
                 <div class="section-label">Contact</div>
                 <h2 class="section-title">
                     Let's <span class="highlight-coral">Connect</span>
-                </h2>
+                </h2><img class="plain-email" src="assets/email.gif" alt="Email">
                 <p class="section-subtitle">Always open to interesting problems and people.</p>
             </div>
             <div class="contact-card">
@@ -3190,5 +3244,25 @@
         <p>&copy; 1997-2026 Cosmo Santoni. All rights reserved.<br>No part of this website may be reproduced without express written permission.</p>
     </div>
 
+<script>
+(function() {
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    var msPerDay = 86400000;
+    var icml = new Date(2026, 6, 6);
+    var neurips = new Date(2026, 11, 6);
+    var stanley = new Date(2026, 3, 18);
+    var dICML = Math.ceil((icml - now) / msPerDay);
+    var dNeurIPS = Math.ceil((neurips - now) / msPerDay);
+    var dStanley = Math.ceil((stanley - now) / msPerDay);
+    var els;
+    els = document.querySelectorAll('.countdown-icml');
+    for (var i = 0; i < els.length; i++) els[i].textContent = dICML;
+    els = document.querySelectorAll('.countdown-neurips');
+    for (var i = 0; i < els.length; i++) els[i].textContent = dNeurIPS;
+    els = document.querySelectorAll('.countdown-stanley');
+    for (var i = 0; i < els.length; i++) els[i].textContent = dStanley;
+})();
+</script>
 </body>
 </html>
