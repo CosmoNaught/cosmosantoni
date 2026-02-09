@@ -55,7 +55,8 @@
             if ('scrollRestoration' in history) {
               history.scrollRestoration = 'manual';
             }
-            var plain = localStorage.getItem('plain');
+            var params = new URLSearchParams(window.location.search);
+            var plain = params.get('mode') === '1997' ? 'on' : localStorage.getItem('plain');
             var theme = localStorage.getItem('theme');
 
             // If no theme is saved, default to dark for regular mode, light for 1997 mode
