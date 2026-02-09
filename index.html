@@ -1582,22 +1582,26 @@
             [data-plain="on"] .nav-toggle {
                 display: none !important;
             }
-            /* Push page content right for sidebar clearance */
+            /* Offset entire page right of sidebar, then let margin:auto center content */
+            html[data-plain="on"] {
+                padding-left: 178px !important;
+            }
             [data-plain="on"] .plain-marquee,
             [data-plain="on"] .plain-banner,
             [data-plain="on"] section,
             [data-plain="on"] .plain-footer-90s {
-                margin-left: 178px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
             }
-            /* Center banner across remaining viewport */
+            /* Banner fills remaining content area */
             [data-plain="on"] .plain-banner {
-                width: calc(100vw - 178px) !important;
-                max-width: calc(100vw - 178px) !important;
+                width: 100% !important;
+                max-width: 800px !important;
                 box-sizing: border-box !important;
             }
-            /* Hero: full remaining width so pets can spread */
+            /* Hero: nearly full remaining width so pets can spread */
             [data-plain="on"] .hero {
-                max-width: calc(100vw - 198px) !important;
+                max-width: calc(100% - 20px) !important;
                 box-sizing: border-box !important;
             }
         }
@@ -1958,7 +1962,7 @@
         }
         [data-plain="on"] .about-outro {
             border-top: 2px dashed #000080 !important;
-            text-align: left !important;
+            text-align: center !important;
         }
         [data-plain="on"][data-theme="dark"] .about-outro {
             border-top-color: #006600 !important;
