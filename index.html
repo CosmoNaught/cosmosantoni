@@ -1460,17 +1460,19 @@
                 padding: 4px 6px !important;
             }
             [data-plain="on"] .nav-links::before {
-                content: '\2605  NAVIGATE \2605' !important;
+                content: 'NAVIGATE' !important;
                 display: block !important;
                 text-align: center !important;
                 font-size: 11px !important;
                 font-weight: bold !important;
                 color: #00ffff !important;
-                padding: 6px 0 !important;
+                padding: 6px 18px !important;
                 border-bottom: 1px dashed #00ffff !important;
                 margin-bottom: 6px !important;
                 font-family: 'Comic Sans MS', cursive, sans-serif !important;
                 animation: blink90s 1.3s step-end infinite !important;
+                background: url('assets/world.gif') no-repeat left center, url('assets/world.gif') no-repeat right center !important;
+                background-size: 12px 12px !important;
             }
             [data-plain="on"][data-theme="dark"] .nav-links::before {
                 color: #00ff00 !important;
@@ -1499,7 +1501,7 @@
             [data-plain="on"] .nav-link:nth-child(1)::before { content: '\2605  ' !important; color: #ff0000 !important; }
             [data-plain="on"] .nav-link:nth-child(2)::before { content: '\25CF  ' !important; color: #00ff00 !important; }
             [data-plain="on"] .nav-link:nth-child(4)::before { content: '\2666  ' !important; color: #00ffff !important; }
-            [data-plain="on"] .nav-cta::before { content: '\25BC  ' !important; color: #ff6600 !important; }
+            [data-plain="on"] .nav-cta::before { content: '' !important; display: inline-block !important; width: 12px !important; height: 12px !important; background: url('assets/redarrowright.gif') no-repeat center / contain !important; vertical-align: middle !important; margin-right: 4px !important; }
             /* Friends sidebar section — only visible in 1997 mode */
             [data-plain="on"] .nav-friends-link {
                 display: block !important;
@@ -1783,17 +1785,30 @@
             display: inline-block !important;
             font-family: 'Comic Sans MS', sans-serif !important;
             font-size: 17px !important;
-            color: white !important;
-            background: #000080 !important;
-            border: 3px outset #8888ff !important;
+            color: #000080 !important;
+            background: #c0c0c0 !important;
+            border: 3px outset #dfdfdf !important;
             padding: 6px 16px !important;
             text-decoration: none !important;
             margin: 4px !important;
-            box-shadow: none !important;
+            box-shadow: 1px 1px 0 #000 !important;
             border-radius: 0 !important;
             width: auto !important;
         }
         [data-plain="on"] .hero-cta-group .btn span { display: none !important; }
+        [data-plain="on"] .hero-cta-group::before,
+        [data-plain="on"] .hero-cta-group::after {
+            content: '' !important;
+            display: inline-block !important;
+            width: 28px !important;
+            height: 28px !important;
+            background: url('assets/redarrowright.gif') no-repeat center / contain !important;
+            vertical-align: middle !important;
+            align-self: center !important;
+        }
+        [data-plain="on"] .hero-cta-group::after {
+            transform: rotate(180deg) !important;
+        }
         [data-plain="on"][data-theme="dark"] .hero-cta-group .btn {
             background: #003300 !important;
             border-color: #00ff00 !important;
@@ -2101,13 +2116,13 @@
             display: inline-block !important;
             font-family: 'Comic Sans MS', sans-serif !important;
             font-size: 16px !important;
-            color: white !important;
-            background: #000080 !important;
-            border: 2px outset #8888ff !important;
+            color: #000080 !important;
+            background: #c0c0c0 !important;
+            border: 2px outset #dfdfdf !important;
             padding: 4px 12px !important;
             margin: 4px !important;
             text-decoration: none !important;
-            box-shadow: none !important;
+            box-shadow: 1px 1px 0 #000 !important;
             border-radius: 0 !important;
             width: auto !important;
             transition: none !important;
@@ -2178,10 +2193,13 @@
             padding: 6px 12px !important;
             background: #c0c0c0 !important;
             border: 2px outset #d4d0c8 !important;
+            border-radius: 0 !important;
             color: #000000 !important;
             margin: 2px !important;
             text-decoration: none !important;
             display: block !important;
+            text-align: left !important;
+            box-shadow: 1px 1px 0 #000 !important;
         }
         [data-plain="on"] .mobile-link:hover,
         [data-plain="on"] .mobile-cta:hover {
@@ -2201,8 +2219,22 @@
         }
 
         /* Nav toggle button - 90s style */
+        [data-plain="on"] .nav-toggle {
+            background: #c0c0c0 !important;
+            border: 2px outset #dfdfdf !important;
+            border-radius: 0 !important;
+            box-shadow: 1px 1px 0 #000 !important;
+        }
+        [data-plain="on"] .nav-toggle:active {
+            border-style: inset !important;
+            box-shadow: none !important;
+        }
+        [data-plain="on"][data-theme="dark"] .nav-toggle {
+            background: #003300 !important;
+            border: 2px outset #006600 !important;
+        }
         [data-plain="on"] .nav-toggle .bar {
-            background: #ffff00 !important;
+            background: #000000 !important;
             height: 3px !important;
         }
         [data-plain="on"][data-theme="dark"] .nav-toggle .bar {
@@ -2437,7 +2469,8 @@
         [data-plain="on"] .btn:hover,
         [data-plain="on"] .hero-cta-group .btn:hover {
             border-style: inset !important;
-            background: #800000 !important;
+            background: #d4d0c8 !important;
+            box-shadow: none !important;
         }
         [data-plain="on"][data-theme="dark"] .btn:hover {
             background: #006600 !important;
@@ -2753,13 +2786,47 @@
         }
         [data-plain="on"] .webring-btn {
             font-family: 'MS Sans Serif', 'Arial', sans-serif !important;
-            font-size: 11px !important;
+            font-size: 0px !important;
+            line-height: 0 !important;
             font-weight: bold !important;
             color: #000080 !important;
             background: #c0c0c0 !important;
             border: 2px outset #dfdfdf !important;
-            padding: 3px 12px !important;
+            padding: 3px 8px !important;
             cursor: pointer !important;
+        }
+        [data-plain="on"] #wrPrev::before {
+            content: '' !important;
+            display: inline-block !important;
+            width: 12px !important;
+            height: 12px !important;
+            background: url('assets/bluearrowleft.gif') no-repeat center / contain !important;
+            vertical-align: middle !important;
+            margin-right: 4px !important;
+        }
+        [data-plain="on"] #wrPrev::after {
+            content: 'Previous' !important;
+            font-size: 11px !important;
+            font-weight: bold !important;
+            color: #000080 !important;
+            vertical-align: middle !important;
+        }
+        [data-plain="on"] #wrNext::before {
+            content: 'Next' !important;
+            font-size: 11px !important;
+            font-weight: bold !important;
+            color: #000080 !important;
+            vertical-align: middle !important;
+            margin-right: 4px !important;
+        }
+        [data-plain="on"] #wrNext::after {
+            content: '' !important;
+            display: inline-block !important;
+            width: 12px !important;
+            height: 12px !important;
+            background: url('assets/bluearrowleft.gif') no-repeat center / contain !important;
+            vertical-align: middle !important;
+            transform: rotate(180deg) !important;
         }
         [data-plain="on"] .webring-btn:hover {
             background: #d4d0c8 !important;
@@ -2889,6 +2956,8 @@
             [data-plain="on"] .hero-title { font-size: 28px !important; }
             [data-plain="on"] .hero-subtitle { font-size: 14px !important; }
             [data-plain="on"] .hero-cta-group .btn { font-size: 14px !important; }
+            [data-plain="on"] .hero-cta-group::before,
+            [data-plain="on"] .hero-cta-group::after { display: none !important; }
             [data-plain="on"] .section-label { font-size: 10px !important; }
             [data-plain="on"] .section-title { font-size: 22px !important; }
             [data-plain="on"] .section-subtitle { font-size: 13px !important; }
