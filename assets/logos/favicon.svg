@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background plate: classic Win95 teal -->
+  <rect x="0" y="0" width="512" height="512" fill="#008080"/>
+  <!-- ===== Floppy disk body ===== -->
+  <path d="M104 96 h268 l52 52 v280 a8 8 0 0 1 -8 8 H104 a8 8 0 0 1 -8 -8 V104 a8 8 0 0 1 8 -8 Z" fill="#000000" opacity="0.30" transform="translate(14,16)"/>
+  <path d="M104 96 h268 l52 52 v280 a8 8 0 0 1 -8 8 H104 a8 8 0 0 1 -8 -8 V104 a8 8 0 0 1 8 -8 Z" fill="#3a6ea5"/>
+  <path d="M104 96 h268 l52 52 -20 0 -40 -40 H110 v300 l-14 14 V104 a8 8 0 0 1 8 -8 Z" fill="#6fa3d6"/>
+  <path d="M424 148 v280 a8 8 0 0 1 -8 8 H104 l14 -14 h292 V164 Z" fill="#274d73"/>
+  <!-- ===== Metal shutter (top) ===== -->
+  <rect x="156" y="116" width="180" height="86" fill="#c0c0c0"/>
+  <rect x="156" y="116" width="180" height="86" fill="none" stroke="#808080" stroke-width="6"/>
+  <rect x="162" y="122" width="168" height="10" fill="#e8e8e8"/>
+  <rect x="276" y="128" width="44" height="62" fill="#5a5a5a"/>
+  <rect x="276" y="128" width="44" height="62" fill="none" stroke="#404040" stroke-width="4"/>
+  <!-- ===== Label area (mini Win95 window) — ITERATED ===== -->
+  <!-- window body: cream parchment -->
+  <rect x="132" y="232" width="248" height="172" fill="#fbf6e7"/>
+  <!-- coral title bar across the top -->
+  <rect x="132" y="232" width="248" height="38" fill="#ff5e5b"/>
+  <!-- three Win95 window-control buttons: minimize, maximize, close -->
+  <!-- minimize -->
+  <rect x="302" y="240" width="18" height="18" fill="#fbf6e7" stroke="#1d2b4d" stroke-width="2.5"/>
+  <rect x="306" y="252" width="10" height="3" fill="#1d2b4d"/>
+  <!-- maximize -->
+  <rect x="325" y="240" width="18" height="18" fill="#fbf6e7" stroke="#1d2b4d" stroke-width="2.5"/>
+  <rect x="329" y="244" width="10" height="9" fill="none" stroke="#1d2b4d" stroke-width="2"/>
+  <rect x="329" y="244" width="10" height="3" fill="#1d2b4d"/>
+  <!-- close -->
+  <rect x="348" y="240" width="18" height="18" fill="#fbf6e7" stroke="#1d2b4d" stroke-width="2.5"/>
+  <line x1="352" y1="244" x2="362" y2="254" stroke="#1d2b4d" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="362" y1="244" x2="352" y2="254" stroke="#1d2b4d" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- window outer frame -->
+  <rect x="132" y="232" width="248" height="172" fill="none" stroke="#1d2b4d" stroke-width="6"/>
+  <!-- ===== Big navy serif "C" — ITERATED ===== -->
+  <text x="252" y="392" font-family="'Times New Roman', Georgia, serif" font-size="150" font-weight="bold" text-anchor="middle" fill="#1d2b4d">C</text>
+</svg>
