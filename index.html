@@ -8,24 +8,24 @@
 
         <title>Cosmo Santoni - Applied Mathematics & Machine Learning</title>
 
-        <link rel="canonical" href="https://cosmonaught.github.io/cosmosantoni/">
+        <link rel="canonical" href="https://cosmosantoni.com/">
         <meta name="description" content="PhD researcher at Imperial College London. Neural surrogates, state-space models, simulation-based inference, ML systems optimisation, and Bayesian optimisation. Work spanning ICML, NeurIPS, Nature and The Lancet.">
 
         <meta property="og:title" content="Cosmo Santoni | Machine Learning Research">
         <meta property="og:description" content="PhD researcher at Imperial College London working on neural surrogates, state-space models, and simulation-based inference for scientific computing and public health.">
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://cosmonaught.github.io/cosmosantoni/">
+        <meta property="og:url" content="https://cosmosantoni.com/">
 
-        <meta property="og:image" content="https://cosmonaught.github.io/cosmosantoni/assets/logos/og-image@2x.png">
+        <meta property="og:image" content="https://cosmosantoni.com/assets/logos/og-image@2x.png">
         <meta property="og:image:width" content="2400">
         <meta property="og:image:height" content="1260">
         <meta property="og:image:alt" content="Meet Cosmo. 'Meet' in black, 'Cosmo' in coral on an off-white background.">
 
-        <meta property="og:image" content="https://cosmonaught.github.io/cosmosantoni/assets/logos/og-image.png">
+        <meta property="og:image" content="https://cosmosantoni.com/assets/logos/og-image.png">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
 
-        <link rel="image_src" href="https://cosmonaught.github.io/cosmosantoni/assets/logos/og-image@2x.png">
+        <link rel="image_src" href="https://cosmosantoni.com/assets/logos/og-image@2x.png">
 
         <link rel="icon" type="image/png" sizes="32x32" href="assets/logos/favicon-512.png">
 
@@ -38,7 +38,7 @@
           "affiliation": { "@type": "CollegeOrUniversity", "name": "Imperial College London" },
           "award": "SAGE Award (UK Government Chief Scientific & Medical Officers)",
           "email": "mailto:santonicosmo@gmail.com",
-          "url": "https://cosmonaught.github.io/cosmosantoni/",
+          "url": "https://cosmosantoni.com/",
           "sameAs": [
             "https://github.com/CosmoNaught",
             "https://www.linkedin.com/in/cosmo-santoni",
@@ -56,10 +56,19 @@
               history.scrollRestoration = 'manual';
             }
             var params = new URLSearchParams(window.location.search);
-            var plain = params.get('mode') === '1997' ? 'on' : localStorage.getItem('plain');
+            var stored = localStorage.getItem('plain');
+            // 1997 mode is the canonical default. ?mode=1997 forces it on, ?mode=modern forces it off.
+            var plain;
+            if (params.get('mode') === '1997') {
+              plain = 'on';
+            } else if (params.get('mode') === 'modern') {
+              plain = 'off';
+            } else {
+              plain = (stored === null) ? 'on' : stored;
+            }
             var theme = localStorage.getItem('theme');
 
-            // If no theme is saved, default to dark for regular mode, light for 1997 mode
+            // If no theme is saved, default to light for 1997 mode, dark for modern
             if (!theme) {
               theme = (plain === 'on') ? 'light' : 'dark';
             }
