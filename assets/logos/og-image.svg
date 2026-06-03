@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Segoe UI', system-ui, -apple-system, Arial, sans-serif">
+  <defs>
+    <linearGradient id="coral" x1="0%" y1="0%" x2="100%" y2="30%">
+      <stop offset="0%" stop-color="#ff5e5b"/>
+      <stop offset="55%" stop-color="#ff6b35"/>
+      <stop offset="100%" stop-color="#ffae3b"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="86%" cy="10%" r="55%">
+      <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ff6b35" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="6%" cy="96%" r="45%">
+      <stop offset="0%" stop-color="#ff5e5b" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ff5e5b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- accent bar -->
+  <rect x="92" y="150" width="74" height="7" rx="3.5" fill="url(#coral)"/>
+
+  <!-- eyebrow -->
+  <text x="92" y="206" font-size="25" font-weight="600" letter-spacing="3" fill="#aeaeb4">PHD RESEARCHER &#183; IMPERIAL COLLEGE LONDON</text>
+
+  <!-- name -->
+  <text x="89" y="350" font-size="118" font-weight="800" letter-spacing="-2" fill="#f5f5f7">Cosmo Santoni</text>
+
+  <!-- tagline -->
+  <text x="92" y="442" font-size="48" font-weight="700" letter-spacing="-0.5"><tspan fill="#c7c7cc">Machine Learning </tspan><tspan fill="url(#coral)">Research</tspan></text>
+
+  <!-- footer -->
+  <circle cx="100" cy="556" r="7" fill="url(#coral)"/>
+  <text x="118" y="564" font-size="26" font-weight="500" letter-spacing="0.3" fill="#8a8a8f">cosmosantoni.com</text>
+</svg>
