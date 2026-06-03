@@ -56,5 +56,5 @@
 
   <!-- Supporting touch 2: footer with copyright, URL and last-updated -->
   <text x="600" y="552" text-anchor="middle"
-        font-family="Times New Roman, Georgia, serif" font-size="24" fill="#7a6c46">&#169; 1997 &#183; cosmosantoni.com &#183; Last updated June 2026</text>
+        font-family="Times New Roman, Georgia, serif" font-size="24" fill="#7a6c46">&#169; 1997 &#183; cosmosantoni.com</text>
 </svg>
